@@ -1,0 +1,18 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://getpocket.com/a/read/1365883895"
+    }
+  ],
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "ah-legion-frontend",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
