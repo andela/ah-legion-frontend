@@ -1,0 +1,33 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+#root {
+  background: #efefef;
+}
+.main-container {
+  min-height: 650px;
+}
+.navbar-custom {
+  background: #792525;
+}
+.navbar-custom .brand {
+  color: #fcc810;
+  font-family: "Oleo Script Swash Caps", cursive;
+  font-size: 34px;
+}
+.navbar-custom .brand:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+.navbar-custom .nav-link {
+  color: #fcc810 !important;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.navbar-custom .nav-link:hover {
+  opacity: 0.8;
+}
+.footer {
+  color: grey;
+  text-align: right;
+  padding: 10px;
+}
