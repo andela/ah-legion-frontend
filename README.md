@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.com/andela/ah-legion-frontend.svg?branch=develop)](https://travis-ci.org/andela/ah-legion-frontend)
+[![CircleCI](https://circleci.com/gh/andela/ah-legion-frontend.svg?style=svg)](https://circleci.com/gh/andela/ah-legion-frontend)
+[![Maintainability](https://api.codeclimate.com/v1/badges/651fcb6501ce17364a89/maintainability)](https://codeclimate.com/github/andela/ah-legion-frontend/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/651fcb6501ce17364a89/test_coverage)](https://codeclimate.com/github/andela/ah-legion-frontend/test_coverage)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
