@@ -1,12 +1,7 @@
-const initialState = {
-    articles: [],
-    notifications: [],
-    followers: [],
-}
+import { combineReducers } from 'redux';
+import profile_reducer from './profile_reducer';
 
-function rootReducer(state = initialState, action){
 
-    return state;
-};
-
-export default rootReducer;
+export default combineReducers({
+    profile :profile_reducer
+});
