@@ -6,20 +6,25 @@ import PropTypes from 'prop-types';
 import RegisterForm from './RegisterForm';
 import Login from './Login';
 import ShowModal from '../store/actions/changeFormAction';
-
+import { showErrors } from '../store/actions/registerActions';
+import { IS_LOADING } from '../store/actions/actionTypes';
 
 export class ConnectedAuthenticationModal extends React.Component {
   render() {
     const { modalShow, dispatch, isRegister } = this.props;
-    const onHide = () => dispatch(ShowModal({ modalShow: false }));
+    const onHide = () => {
+      dispatch(ShowModal({ modalShow: false }));
+      dispatch({ type: IS_LOADING, payload: { isLoading: false } });
+      dispatch(showErrors({}));
+    };
     let Form;
     let headerMessage;
     if (isRegister) {
       Form = RegisterForm;
-      headerMessage = <h3 className="col-md-10 col-md-offset-5 header-txt">Join Author&apos;s Haven</h3>;
+      headerMessage = <h3 className="col-md-10 col-md-offset-5">Join Author&apos;s Haven</h3>;
     } else {
       Form = Login;
-      headerMessage = <h3 className="col-md-10 col-md-offset-5 header-txt">Welcome back</h3>;
+      headerMessage = <h3 className="col-md-10 col-md-offset-5">Welcome back</h3>;
     }
     return (
       <Modal

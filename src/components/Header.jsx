@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import AuthenticationModal from './AuthenticationModal';
 import store from '../store/store';
 import { LOGIN, REGISTER } from '../store/actions/actionTypes';
+import AlertModal from './AlertModal';
 
 
 class Header extends React.Component {
@@ -32,6 +33,7 @@ class Header extends React.Component {
           </Nav>
         </Navbar.Collapse>
         <AuthenticationModal />
+        <AlertModal />
       </Navbar>
     );
   }
