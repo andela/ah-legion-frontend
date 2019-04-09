@@ -1,12 +1,6 @@
-const initialState = {
-    articles: [],
-    notifications: [],
-    followers: [],
-}
+import { combineReducers } from 'redux';
+import articlesReducer from './articlesReducer';
 
-function rootReducer(state = initialState, action){
-
-    return state;
-};
-
-export default rootReducer;
+export default combineReducers({
+  articles: articlesReducer,
+});
