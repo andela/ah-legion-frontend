@@ -1,10 +1,12 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, IS_LOADING, LOGOUT } from '../actions/actionTypes';
+import { LOGIN_SUCCESS, LOGIN_FAIL, SOCIAL_LOGIN_FAIL, IS_LOADING, LOGOUT } from '../actions/actionTypes';
 import { isLoggedIn } from '../../utils/tokenValidator';
 
 const initialState = {
   loggedIn: !!isLoggedIn,
   errors: '',
   isLoading: false,
+  socialLoginError: false,
+  provider: '',
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -20,6 +22,13 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         loggedIn: false,
         errors: action.payload,
+      };
+    case SOCIAL_LOGIN_FAIL:
+      return {
+        ...state,
+        logged_in: false,
+        provider: action.provider,
+        socialLoginError: true,
       };
     case IS_LOADING:
       return {

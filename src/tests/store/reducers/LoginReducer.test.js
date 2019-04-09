@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "../../../store/actions/actionTypes";
+import { LOGIN_SUCCESS, LOGIN_FAIL, SOCIAL_LOGIN_FAIL, LOGOUT } from "../../../store/actions/actionTypes";
 import loginReducer from "../../../store/reducers/LoginReducer";
 
 describe("loginReducer", () => {
@@ -54,4 +54,20 @@ describe("loginReducer", () => {
     };
     expect(loginReducer(initialState, invalidType)).toEqual(defaultState);
   });
+
+  it('should alter state on action type SOCIAL_LOGIN_FAIL', () => {
+    expect(
+      loginReducer({}, {
+        type: SOCIAL_LOGIN_FAIL,
+        provider: 'google',
+      })
+    ).toEqual(
+      {
+        logged_in: false,
+        provider: 'google',
+        socialLoginError: true,
+      }
+    )
+  });
+
 });
