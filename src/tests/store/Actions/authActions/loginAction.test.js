@@ -44,7 +44,7 @@ describe("async actions", () => {
         response: mockResponseSuccess.data
       });
     });
-    const expectedActions = ["SHOW_MODAL", "LOGIN_SUCCESS", "IS_LOADING"];
+    const expectedActions = ["SHOW_MODAL", "LOGIN_SUCCESS", "LOGGED_IN", "IS_LOADING"];
 
     return store.dispatch(loginAction()).then(() => {
       const dispatchedActions = store.getActions();

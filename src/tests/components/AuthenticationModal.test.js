@@ -27,6 +27,11 @@ describe('AuthenticationModal', () => {
     expect(component.find('h3').text()).toEqual("Welcome back")
   });
 
+  it('renders authentication modal in Edit Comment mode', () => {
+    const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'edit-comment'} dispatch={jest.fn()} />);
+    expect(component.find('h3').text()).toEqual("Edit Comment")
+  });
+
   it('renders authentication modal in initiate reset mode', () => {
     const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'initiate-reset'} dispatch={jest.fn()} />);
     expect(component.find('h3').text()).toEqual("Forgot your password?")

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Container, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import RegisterForm from './RegisterForm';
+import EditCommentForm from './EditCommentForm';
 import Login from './Login';
 import SocialAccount from './SocialAccount';
 import ShowModal from '../store/actions/changeFormAction';
@@ -22,7 +23,6 @@ export class ConnectedAuthenticationModal extends React.Component {
     };
     let CurrentComponent;
     let headerMessage;
-
     switch (component) {
       case ('register'):
         CurrentComponent = RegisterForm;
@@ -39,6 +39,10 @@ export class ConnectedAuthenticationModal extends React.Component {
       case ('password-reset'):
         CurrentComponent = PasswordResetForm;
         headerMessage = 'Create your new Password';
+        break;
+      case ('edit-comment'):
+        CurrentComponent = EditCommentForm;
+        headerMessage = 'Edit Comment';
         break;
       default:
         CurrentComponent = Login;
@@ -67,6 +71,7 @@ export class ConnectedAuthenticationModal extends React.Component {
     );
   }
 }
+
 
 export const mapStateToProps = state => state.modalState;
 

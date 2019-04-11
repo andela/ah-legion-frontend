@@ -196,10 +196,10 @@ h3 {
   display: inline-block;
   margin-top:12px;
 }
-img {
+/* img {
   width: 100%;
   margin-bottom: 15px;
-}
+} */
 .meta,
 .description {
   color: grey;
@@ -291,6 +291,63 @@ color: #000000;
 
 .password-input {
   margin-top: 0;
+}
+
+.auth{
+	background: #FFFFFF;
+	border: 1px solid #efefef;
+	border-radius:5px;
+	padding: 7% 2%;
+	margin-bottom: 11%;
+  text-align: justify;
+}
+.auth-left{
+	min-height:500px;
+	background: #EFEBD5;
+	margin-right:100px;
+}
+
+.same-line{
+  display:inline-block;
+  border-radius: 5px;
+  width: 50px;
+
+}
+
+.the-pointer{
+  cursor: pointer;
+}
+
+.profile-follow-button{
+  margin-left: 5px; 
+  padding: 2px 3px;
+  border: 2px; 
+  border-radius: 4px; 
+  color: grey; 
+  display:inline-block
+}
+
+.border-gold{
+	border: 2px solid #FCC810;
+	border-radius: 3px;
+}
+
+.profile-follow-button a{
+  text-decoration: none;
+}
+
+.read-time{
+  font-size:13px; 
+  color:gray; 
+}
+
+.article-tags{
+  background:#efefef; 
+  padding: 5px; 
+  border-radius: 3px;
+  margin-right: 5px; 
+  color: grey; 
+  display:inline-block;
 }
 
 .btn-one{
@@ -719,9 +776,87 @@ a {
   left:0;
   bottom:0;
 }
-.read-more-button:hover:before,button:hover:after{
+/* .read-more-button:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
+} */
+
+.btn-two{
+  text-align: left;
+  font-size: 16px;
+  background: #792525;
+  border: none;
+  color: #fcc810;
+}
+.btn-two:hover{
+border:1px solid #000000;
+background: transparent;
+color: #000000;
+}
+.btn-three{
+  background: transparent;
+  border: 1px solid#fcc810;
+  color: #000000;
+}
+.btn-three:hover{
+border:1px solid #000000;
+background: transparent;
+color: #000000;
+}
+.btn-four{
+  background: transparent;
+  border: 1px solid grey;
+  color: #000000;
+}
+.btn-four:hover{
+border:1px solid #000000;
+background: transparent;
+color: #000000;
+}
+
+.btn-five{
+  background: gray;
+  border: none;
+}
+.btn-five:hover{
+ background: gray;
+ border: none;
+}
+
+.comment-author{
+  display:inline-block;
+  border-radius: 5px;
+}
+
+.comment-time{
+  color: grey; 
+  font-size: 14px;
+}
+
+.commentor-image{
+  display:inline-block;
+  border-radius: 10px;
+}
+
+.reply-btn{
+ margin-bottom: 1%;
+}
+
+.max-row{
+  max-width: 80%;
+}
+
+.single-article img{
+  width: 62%;
+  max-width: 100%;
+}
+
+.single-article span, .single-article p{
+  font-family: "Lato", sans-serif !important;
+  background: none !important;
+  font-size:  16px !important;
+  color: #333 !important;
+  
 }
 /* Home*/
 

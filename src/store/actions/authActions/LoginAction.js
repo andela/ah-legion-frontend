@@ -1,5 +1,10 @@
 import axiosConfig from '../../../axiosConfig';
-import { LOGIN_SUCCESS, LOGIN_FAIL, IS_LOADING } from '../actionTypes';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  IS_LOADING,
+  LOGGED_IN,
+} from '../actionTypes';
 import ShowModal from '../changeFormAction';
 
 const loginAction = loginData => dispatch => axiosConfig.request({
@@ -21,6 +26,9 @@ const loginAction = loginData => dispatch => axiosConfig.request({
     }));
     dispatch({
       type: LOGIN_SUCCESS,
+    });
+    dispatch({
+      type: LOGGED_IN,
     });
     dispatch({
       type: IS_LOADING,

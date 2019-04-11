@@ -1,14 +1,29 @@
-import { SHOW_ALERT } from '../actions/actionTypes';
+import {
+  SHOW_ALERT,
+  DELETE_COMMENT,
+} from '../actions/actionTypes';
 
 const initialState = {
   showAlert: false,
+  isDeleteComment: false,
   message: '',
   colorClass: '',
 };
 
 function alertModalReducer(state = initialState, action) {
-  if (action.type === SHOW_ALERT) {
-    return Object.assign({}, state, action.payload);
+  switch (action.type) {
+    case (SHOW_ALERT):
+      return Object.assign({}, state, action.payload);
+    case (DELETE_COMMENT):
+      return ({
+        ...state,
+        deleteData: action.payload,
+        isDeleteComment: true,
+        colorClass: 'alert-danger',
+        showAlert: true,
+      });
+    default:
+      break;
   }
   return state;
 }

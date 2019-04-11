@@ -1,7 +1,10 @@
-import { ConnectedAlertModal } from '../../components/AlertModal';
+import { ConnectedAlertModal, mapDispatchToProps } from '../../components/AlertModal';
 import { mapStateToProps } from '../../components/AlertModal';
 import { shallow, mount } from 'enzyme';
 import React from 'react';
+import {
+  deleteAComment,
+} from '../../store/actions/commentsActions';
 
 describe('AlertModal', () => {
   it('renders one alert modal', () => {
@@ -15,7 +18,42 @@ describe('AlertModal', () => {
 		const closeBtn = component.find('.close');
     closeBtn.simulate('click');
     expect(dispatch).toHaveBeenCalled();
-	});
+  });
+  it('delete comment', () => {
+    const props= {
+      isDeleteComment: true,
+    }
+    const dispatch = jest.fn();
+    const component = mount(<ConnectedAlertModal {...props} showAlert={true} message={'pass test, paass!'} dispatch={dispatch}/>);
+		const closeBtn = component.find('.close');
+    closeBtn.simulate('click');
+    expect(dispatch).toHaveBeenCalled();
+  });
+  it('Should dispatch the deleteComment', () => {
+    const props= {
+      isDeleteComment: true,
+      dispatch: jest.fn(),
+      deleteData: {
+        slug:"wertrtew",
+        id: 44,
+      } , 
+      deleteComment: jest.fn()
+    }
+    const component = mount(<ConnectedAlertModal {...props} showAlert={true} message={'pass test, paass!'}/>);
+    const wrapperInstance = component.instance();
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        deleteComment: jest.fn(),
+      },
+    };
+    const state = {
+      thisComment: '',
+    };
+    wrapperInstance.setState(state);
+    wrapperInstance.deleteComment(event);
+    expect(wrapperInstance.state.thisComment).toEqual('')
+  });
 
 });
 
