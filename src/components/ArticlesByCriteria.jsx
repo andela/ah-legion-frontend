@@ -29,12 +29,10 @@ const ArticlesByCriteria = ({ articles, start, end }) => (articles ? (
 ));
 
 ArticlesByCriteria.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number,
-    PropTypes.string, PropTypes.array])),
+  articles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.array, PropTypes.object])),
   start: PropTypes.number,
   end: PropTypes.number,
 };
-
 ArticlesByCriteria.defaultProps = {
   articles: [],
   start: 0,

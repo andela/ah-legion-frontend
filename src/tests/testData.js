@@ -21,6 +21,28 @@ export const articles = [
   },
 ];
 
+export const article = {
+  id: 7,
+  title: 'Andela TIA',
+  reading_time: '1 minutes',
+  description: 'Ever wonder how?',
+  created_at: '2019-04-09T20:56:04.410399+03:00',
+};
+
+export const authorArticles = [
+  {
+    id: 7,
+    title: 'Andela TIA',
+    reading_time: '1 minutes',
+    description: 'Ever wonder how?',
+  },
+  {
+    id: 64,
+    title: 'Andela TIA',
+    reading_time: '1 minutes',
+    description: 'Ever wonder how?',
+  },
+];
 export const containerArticles = {
   articles: {
     Articles:

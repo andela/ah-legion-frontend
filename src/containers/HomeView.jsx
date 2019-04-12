@@ -6,7 +6,8 @@ import { fetchAllArticles } from '../store/actions/articles';
 
 export class HomeView extends Component {
   componentDidMount() {
-    fetchAllArticles();
+    const { fetchArticles } = this.props;
+    fetchArticles();
   }
 
   render() {
@@ -17,12 +18,12 @@ export class HomeView extends Component {
 }
 
 HomeView.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number,
-    PropTypes.string, PropTypes.array])),
-
+  fetchArticles: PropTypes.func,
+  articles: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 HomeView.defaultProps = {
+  fetchArticles: () => {},
   articles: [],
 };
 export const mapStateToProps = (state) => {
@@ -30,9 +31,9 @@ export const mapStateToProps = (state) => {
   return { articles };
 };
 export const mapDispatchToProps = dispatch => ({
-  fetchAllArticles: () => dispatch(fetchAllArticles()),
+  fetchArticles: () => dispatch(fetchAllArticles()),
 });
 export default connect(
   mapStateToProps,
-  fetchAllArticles(),
+  mapDispatchToProps,
 )(HomeView);
