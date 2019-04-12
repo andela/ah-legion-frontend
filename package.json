@@ -12,6 +12,7 @@
     "enzyme-adapter-react-16": "^1.12.1",
     "html-react-parser": "^0.7.0",
     "firebase": "^5.9.3",
+    "html-react-parser": "^0.7.0",
     "i": "^0.3.6",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
