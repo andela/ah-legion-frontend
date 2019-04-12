@@ -1,12 +1,8 @@
-const initialState = {
-    articles: [],
-    notifications: [],
-    followers: [],
-}
+import { combineReducers } from 'redux';
+import modalReducer from './modal-reducer';
 
-function rootReducer(state = initialState, action){
-
-    return state;
-};
+const rootReducer = combineReducers({
+  modalState: modalReducer,
+});
 
 export default rootReducer;

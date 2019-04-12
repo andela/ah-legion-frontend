@@ -31,3 +31,46 @@ body {
   text-align: right;
   padding: 10px;
 }
+
+.get-started {
+  color: #fcc810 !important;
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid #fcc810;
+  border-radius: 3px;
+  margin-left: 15px;
+}
+
+.auth-btn {
+  cursor: pointer;
+}
+
+.authentication-modal{
+  background:#f0eded !important;
+  opacity:0.9;
+}
+.authentication-modal-body{
+  border:none !important; 
+}
+.authentication-modal-header{
+  border:none !important; 
+}
+
+.modal-content {
+  opacity: 1 !important;
+  background-color: white;
+  max-height: 80%;
+}
+
+.authentication-modal-header {
+  text-align: center;
+  justify-content: center;
+}
+
+.header-txt {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.modal-dialog {
+  height: 100%;
+}
