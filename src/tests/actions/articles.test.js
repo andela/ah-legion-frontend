@@ -95,111 +95,222 @@ describe('async actions', () => {
     const expectedActionTypes = [CREATE_ARTICLE];
 
     return store.dispatch(createAnArticle({})).then(() => {
-      const dispatchedActions = store.getActions();
-      const dispatchedActionTypes = dispatchedActions.map(
-        action => action.type,
-      );
-
-      expect(dispatchedActionTypes).toEqual(expectedActionTypes);
     });
   });
-  it('dispatches CREATE_ARTICLE_FAIL', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 404,
-        response: article.data,
-      });
-    });
-    const expectedActionTypes = [CREATE_ARTICLE_FAIL];
+  const expectedActionTypes = [CREATE_ARTICLE];
 
-    return store.dispatch(createAnArticle({})).then(() => {
-      const dispatchedActions = store.getActions();
-      const dispatchedActionTypes = dispatchedActions.map(
-        action => action.type,
-      );
+  return store.dispatch(createAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
 
-      expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+it('dispatches CREATE_ARTICLE_FAIL', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 404,
+      response: article.data,
     });
   });
+  const expectedActionTypes = [CREATE_ARTICLE_FAIL];
 
-  it('dispatches EDIT_ARTICLE', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: article.data,
-      });
-    });
-    const expectedActionTypes = [EDIT_ARTICLE];
+  return store.dispatch(createAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
 
-    return store.dispatch(editAnArticle({})).then(() => {
-      const dispatchedActions = store.getActions();
-      const dispatchedActionTypes = dispatchedActions.map(
-        action => action.type,
-      );
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
 
-      expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+it('dispatches EDIT_ARTICLE', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 200,
+      response: article.data,
     });
   });
-  it('dispatches EDIT_ARTICLE_FAIL', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 404,
-        response: article.data,
-      });
-    });
-    const expectedActionTypes = [EDIT_ARTICLE_FAIL];
+  const expectedActionTypes = [EDIT_ARTICLE];
 
-    return store.dispatch(editAnArticle({})).then(() => {
-      const dispatchedActions = store.getActions();
-      const dispatchedActionTypes = dispatchedActions.map(
-        action => action.type,
-      );
+  return store.dispatch(editAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
 
-      expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+it('dispatches EDIT_ARTICLE_FAIL', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 404,
+      response: article.data,
     });
   });
+  const expectedActionTypes = [EDIT_ARTICLE_FAIL];
 
-  it('dispatches PUBLISH_ARTICLE', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: article.data,
-      });
-    });
-    const expectedActionTypes = [PUBLISH_ARTICLE];
+  return store.dispatch(editAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
 
-    return store.dispatch(publishAnArticle({})).then(() => {
-      const dispatchedActions = store.getActions();
-      const dispatchedActionTypes = dispatchedActions.map(
-        action => action.type,
-      );
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
 
-      expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+it('dispatches PUBLISH_ARTICLE', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 200,
+      response: article.data,
     });
   });
-  it('dispatches PUBLISH_ARTICLE_FAIL', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 404,
-        response: article.data,
-      });
-    });
-    const expectedActionTypes = [PUBLISH_ARTICLE_FAIL];
+  const expectedActionTypes = [PUBLISH_ARTICLE];
 
-    return store.dispatch(publishAnArticle({})).then(() => {
-      const dispatchedActions = store.getActions();
-      const dispatchedActionTypes = dispatchedActions.map(
-        action => action.type,
-      );
+  return store.dispatch(publishAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
 
-      expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+it('dispatches PUBLISH_ARTICLE_FAIL', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 404,
+      response: article.data,
     });
   });
+  const expectedActionTypes = [PUBLISH_ARTICLE_FAIL];
+
+  return store.dispatch(publishAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
+
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+it('dispatches CREATE_ARTICLE_FAIL', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 404,
+      response: article.data,
+    });
+  });
+  const expectedActionTypes = [CREATE_ARTICLE_FAIL];
+
+  return store.dispatch(createAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
+
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+
+it('dispatches EDIT_ARTICLE', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 200,
+      response: article.data,
+    });
+  });
+  const expectedActionTypes = [EDIT_ARTICLE];
+
+  return store.dispatch(editAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
+
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+it('dispatches EDIT_ARTICLE_FAIL', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 404,
+      response: article.data,
+    });
+  });
+  const expectedActionTypes = [EDIT_ARTICLE_FAIL];
+
+  return store.dispatch(editAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
+
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+
+it('dispatches PUBLISH_ARTICLE', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 200,
+      response: article.data,
+    });
+  });
+  const expectedActionTypes = [PUBLISH_ARTICLE];
+
+  return store.dispatch(publishAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
+
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+it('dispatches PUBLISH_ARTICLE_FAIL', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 404,
+      response: article.data,
+    });
+  });
+  const expectedActionTypes = [PUBLISH_ARTICLE_FAIL];
+
+  return store.dispatch(publishAnArticle({})).then(() => {
+    const dispatchedActions = store.getActions();
+    const dispatchedActionTypes = dispatchedActions.map(
+      action => action.type,
+    );
+
+    expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+  });
+});
+it('dispatches FETCH_ARTICLES_BY_AUTHOR', () => {
+  moxios.wait(() => {
+    const request = moxios.requests.mostRecent();
+    request.respondWith({
+      status: 200,
+      response: article.data,
+    });
+  });
+  const expectedActionTypes = [FETCH_ARTICLES_BY_AUTHOR];
   it('dispatches FETCH_ARTICLES_BY_AUTHOR', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
@@ -236,6 +347,37 @@ describe('async actions', () => {
       );
 
       expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+    });
+  });
+  it('dispatches FETCH_ARTICLES_BY_AUTHOR_FAIL', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 404,
+        response: articles.data,
+      });
+    });
+    const expectedActionTypes = [FETCH_ARTICLES_BY_AUTHOR_FAIL];
+
+    return store.dispatch(fetchAllArticlesByAuthor({})).then(() => {
+      const dispatchedActions = store.getActions();
+      const dispatchedActionTypes = dispatchedActions.map(
+        action => action.type,
+      );
+
+      expect(dispatchedActionTypes).toEqual(expectedActionTypes);
+    });
+  });
+});
+
+describe('CreateArticleView map props to state', () => {
+  const editedArticle = article;
+  const publishedArticle = article;
+  it('should return the initial state', () => {
+    expect(mapStateToProps({
+      article, editedArticle, publishedArticle,
+    })).toEqual({
+      article, editedArticle, publishedArticle,
     });
   });
 });
