@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import AuthenticationModal, { mapStateToProps } from '../../components/AuthenticationModal';
-import {ConnectedAuthenticationModal} from '../../components/AuthenticationModal';
+import { ConnectedAuthenticationModal } from '../../components/AuthenticationModal';
+import store from '../../store/store';
+import { Provider } from 'react-redux';
 
 
 describe('AuthenticationModal', () => {
@@ -27,8 +29,8 @@ describe('AuthenticationModal', () => {
 
   it('dispatches action when modal is hidden', () => {
     const dispatch = jest.fn()
-    const component = mount(<ConnectedAuthenticationModal modalShow={true} isRegister={true} dispatch={dispatch} />);
-    component.find('button').simulate('click')
+    const component = mount(<Provider store={store}><ConnectedAuthenticationModal modalShow={true} isRegister={true} dispatch={dispatch} /></Provider>);
+    component.find('.close').simulate('click')
     expect(dispatch).toHaveBeenCalled()
   });
 });

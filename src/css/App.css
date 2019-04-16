@@ -1,31 +1,39 @@
 body {
   font-family: "Lato", sans-serif;
 }
+
 #root {
   background: #efefef;
 }
+
 .main-container {
   min-height: 650px;
 }
+
 .navbar-custom {
   background: #792525;
 }
+
 .navbar-custom .brand {
   color: #fcc810;
   font-family: "Oleo Script Swash Caps", cursive;
   font-size: 34px;
 }
+
 .navbar-custom .brand:hover {
   text-decoration: none;
   opacity: 0.8;
 }
+
 .navbar-custom .nav-link {
   color: #fcc810 !important;
   font-family: "Roboto Condensed", sans-serif;
 }
+
 .navbar-custom .nav-link:hover {
   opacity: 0.8;
 }
+
 .footer {
   color: grey;
   text-align: right;
@@ -44,33 +52,101 @@ body {
   cursor: pointer;
 }
 
-.authentication-modal{
-  background:#f0eded !important;
-  opacity:0.9;
+.authentication-modal {
+  background: #f0eded !important;
+  opacity: 0.9;
 }
-.authentication-modal-body{
-  border:none !important; 
+
+.authentication-modal-body {
+  border: none !important;
 }
-.authentication-modal-header{
-  border:none !important; 
+
+.authentication-modal-header {
+  border: none !important;
+  text-align: center;
+  justify-content: center;
+}
+
+.authentication-modal-footer {
+  border: none !important;
+}
+
+.swap-modal-span {
+  cursor: pointer;
+  text-decoration: chocolate;
+  color: chocolate;
+}
+
+.swap-modal-span:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.swap-modal-text {
+  font-size: 14px;
+  padding-top: 1%;;
 }
 
 .modal-content {
   opacity: 1 !important;
   background-color: white;
-  max-height: 80%;
-}
-
-.authentication-modal-header {
-  text-align: center;
-  justify-content: center;
-}
-
-.header-txt {
-  font-size: 28px;
-  font-weight: 500;
+  max-height: fit-content;
+  min-height: 80%;
 }
 
 .modal-dialog {
   height: 100%;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.error-text {
+  color: red;
+}
+
+.center {
+  margin: auto;
+  padding: 0 10% 3% 10%;
+}
+
+.modal-title {
+  text-align: center;
+}
+
+.header-txt {
+  margin-left: 37%;
+}
+
+#alert-modal .modal-content {
+  max-height: fit-content;
+  min-height: 30%;
+}
+
+.alert-modal-header {
+  padding: 5px;
+  padding-right: 10px;
+}
+
+.btn-one {
+  background: #792525;
+  border: none;
+  color: #fcc810;
+}
+
+.btn-one:hover {
+  opacity: 0.7;
+  background: #792525;
+  border: none;
+  color: #fcc810;
+}
+
+.btn-one:disabled {
+  background: #792525;
+  color: #fcc810;
+}
+
+.btn-one .btn .btn-primary {
+  background: #792525;
 }

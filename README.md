@@ -47,3 +47,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 Styling with `sass` is supported in this project. To use `sass`, just put your `sass` styling in a `.scss` file.
 `import` your `.scss` file whenever you need it. It is going to be compiled minified and bundled together with the rest of the project.
+
+### Environment variables
+`REACT_APP_BASE_URL=https://ah-legion.herokuapp.com/api/`
+
+`REACT_APP_FRONTEND_URL=https://ah-legion-frontend-staging.herokuapp.com/`

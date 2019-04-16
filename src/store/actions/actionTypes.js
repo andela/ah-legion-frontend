@@ -1,3 +1,9 @@
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
+export const USER_REGISTERED = 'USER_REGISTERED';
+export const REGISTRATION_ERROR = 'REGISTRATION_ERROR';
+export const REGISTER_USER = 'REGISTER_USER';
+export const SHOW_ERRORS = 'SHOW_ERRORS';
+export const SHOW_ALERT = 'SHOW_ALERT';
+export const IS_LOADING = 'IS_LOADING';
