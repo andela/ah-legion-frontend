@@ -18,18 +18,28 @@ describe('AuthenticationModal', () => {
   });
 
   it('renders authentication modal in register mode', () => {
-    const component = shallow(<ConnectedAuthenticationModal modalShow={true} isRegister={true} dispatch={jest.fn()} />);
+    const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'register'} dispatch={jest.fn()} />);
     expect(component.find('h3').text()).toEqual("Join Author's Haven")
   });
 
   it('renders authentication modal in login mode', () => {
-    const component = shallow(<ConnectedAuthenticationModal modalShow={true} isRegister={false} dispatch={jest.fn()} />);
+    const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'login'} dispatch={jest.fn()} />);
     expect(component.find('h3').text()).toEqual("Welcome back")
+  });
+
+  it('renders authentication modal in initiate reset mode', () => {
+    const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'initiate-reset'} dispatch={jest.fn()} />);
+    expect(component.find('h3').text()).toEqual("Forgot your password?")
+  });
+
+  it('renders authentication modal in password reset mode', () => {
+    const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'password-reset'} dispatch={jest.fn()} />);
+    expect(component.find('h3').text()).toEqual("Create your new Password")
   });
 
   it('dispatches action when modal is hidden', () => {
     const dispatch = jest.fn()
-    const component = mount(<Provider store={store}><ConnectedAuthenticationModal modalShow={true} isRegister={true} dispatch={dispatch} /></Provider>);
+    const component = mount(<Provider store={store}><ConnectedAuthenticationModal modalShow={true} component={''} dispatch={dispatch} /></Provider>);
     component.find('.close').simulate('click')
     expect(dispatch).toHaveBeenCalled()
   });

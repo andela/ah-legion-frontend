@@ -3,6 +3,7 @@ import { SHOW_ALERT } from '../actions/actionTypes';
 const initialState = {
   showAlert: false,
   message: '',
+  colorClass: '',
 };
 
 function alertModalReducer(state = initialState, action) {

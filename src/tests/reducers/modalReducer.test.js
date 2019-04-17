@@ -1,12 +1,12 @@
-import modalReducer from '../../store/reducers/modal-reducer';
+import modalReducer from '../../store/reducers/modalReducer';
 import * as types from '../../store/actions/actionTypes';
 
 describe('modal reducer', () => {
   it('should return the initial state', () => {
     expect(modalReducer(undefined, {})).toEqual(
       {
-        isRegister: false,
-        modalShow: false,
+        component: '',
+        modalShow: false
       }
     )
   })
@@ -16,13 +16,13 @@ describe('modal reducer', () => {
       modalReducer({}, {
         type: types.SHOW_MODAL,
         payload: {
-          isRegister: true,
+          component: 'register',
           modalShow: true,
         }
       })
     ).toEqual(
       {
-        isRegister: true,
+        component: 'register',
         modalShow: true,
       }
     )
@@ -35,7 +35,7 @@ describe('modal reducer', () => {
       })
     ).toEqual(
       {
-        isRegister: true,
+        component: 'register',
         modalShow: true,
       }
     )
@@ -48,9 +48,35 @@ describe('modal reducer', () => {
       })
     ).toEqual(
       {
-        isRegister: false,
+        component: 'login',
         modalShow: true,
       }
     )
   })
+
+it('should change state on action type initiatate reset', () => {
+  expect(
+    modalReducer({}, {
+      type: types.INITIATE_RESET
+    })
+  ).toEqual(
+    {
+      component: 'initiate-reset',
+      modalShow: true,
+    }
+  )
+})
+  
+it('should change state on action type password reset', () => {
+  expect(
+    modalReducer({}, {
+      type: types.PASSWORD_RESET
+    })
+  ).toEqual(
+    {
+      component: 'password-reset',
+      modalShow: true,
+    }
+  )
+})
 });

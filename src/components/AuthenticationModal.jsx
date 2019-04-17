@@ -7,24 +7,43 @@ import RegisterForm from './RegisterForm';
 import Login from './Login';
 import ShowModal from '../store/actions/changeFormAction';
 import { showErrors } from '../store/actions/registerActions';
-import { IS_LOADING } from '../store/actions/actionTypes';
+import { IS_LOADING, REDIRECT } from '../store/actions/actionTypes';
+import InitiateResetForm from './InitateResetForm';
+import PasswordResetForm from './PasswordResetForm';
 
 export class ConnectedAuthenticationModal extends React.Component {
   render() {
-    const { modalShow, dispatch, isRegister } = this.props;
+    const { modalShow, dispatch, component } = this.props;
     const onHide = () => {
       dispatch(ShowModal({ modalShow: false }));
       dispatch({ type: IS_LOADING, payload: { isLoading: false } });
       dispatch(showErrors({}));
+      dispatch({ type: REDIRECT, payload: { redirect: false } });
     };
-    let Form;
+    let CurrentComponent;
     let headerMessage;
-    if (isRegister) {
-      Form = RegisterForm;
-      headerMessage = <h3 className="col-md-10 col-md-offset-5">Join Author&apos;s Haven</h3>;
-    } else {
-      Form = Login;
-      headerMessage = <h3 className="col-md-10 col-md-offset-5">Welcome back</h3>;
+
+    switch (component) {
+      case ('register'):
+        CurrentComponent = RegisterForm;
+        headerMessage = 'Join Author\'s Haven';
+        break;
+      case ('login'):
+        CurrentComponent = Login;
+        headerMessage = 'Welcome back';
+        break;
+      case ('initiate-reset'):
+        CurrentComponent = InitiateResetForm;
+        headerMessage = 'Forgot your password?';
+        break;
+      case ('password-reset'):
+        CurrentComponent = PasswordResetForm;
+        headerMessage = 'Create your new Password';
+        break;
+      default:
+        CurrentComponent = Login;
+        headerMessage = 'Welcome back';
+        break;
     }
     return (
       <Modal
@@ -36,11 +55,11 @@ export class ConnectedAuthenticationModal extends React.Component {
         className="authentication-modal"
       >
         <Modal.Header className="authentication-modal-header" closeButton>
-          {headerMessage}
+          <h3 className="col-md-10 col-md-offset-5">{headerMessage}</h3>
         </Modal.Header>
         <Modal.Body className="authentication-modal-body">
           <Container>
-            <Form />
+            <CurrentComponent />
           </Container>
         </Modal.Body>
       </Modal>
@@ -48,17 +67,11 @@ export class ConnectedAuthenticationModal extends React.Component {
   }
 }
 
-export const mapStateToProps = (state) => {
-  const { isRegister, modalShow } = state.modalState;
-  return {
-    isRegister,
-    modalShow,
-  };
-};
+export const mapStateToProps = state => state.modalState;
 
 ConnectedAuthenticationModal.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  isRegister: PropTypes.bool.isRequired,
+  component: PropTypes.string.isRequired,
   modalShow: PropTypes.bool.isRequired,
 };
 
