@@ -9,7 +9,6 @@ import Routes from './routes';
 import * as serviceWorker from './serviceWorker';
 import store from './store/store';
 
-
 require('dotenv').config();
 
 ReactDOM.render(

@@ -6,7 +6,10 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "dotenv": "^7.0.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "i": "^0.3.6",
+    "jsonwebtoken": "^8.5.1",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -20,7 +23,8 @@
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "validator": "^10.11.0"
+    "validator": "^10.11.0",
+    "sinon": "^7.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,8 +46,6 @@
   "devDependencies": {
     "coverage": "^0.1.0",
     "coveralls": "^3.0.3",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.2",
     "enzyme-to-json": "^3.3.5",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",

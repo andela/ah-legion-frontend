@@ -9,3 +9,5 @@ export const SHOW_ALERT = 'SHOW_ALERT';
 export const IS_LOADING = 'IS_LOADING';
 export const FETCH_ALL_ARTICLES = 'FETCH_ALL_ARTICLES';
 export const FETCH_ALL_ARTICLES_FAIL = 'FETCH_ALL_ARTICLES_FAIL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';

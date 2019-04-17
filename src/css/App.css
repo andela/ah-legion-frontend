@@ -255,3 +255,75 @@ color: #000000;
 .title-link:hover{
   color: #000000;
   }
+
+.swap-modal-span {
+  cursor: pointer;
+  text-decoration: chocolate;
+  color: chocolate;
+}
+
+.swap-modal-span:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.swap-modal-text {
+  font-size: 14px;
+}
+
+.modal-dialog {
+  height: 100%;
+}
+.red-form-border {
+  border: 1px solid red;
+}
+
+.password-input {
+  margin-top: 0;
+}
+
+.btn-one{
+  background: #792525;
+  border: none;
+  color: #fcc810;
+}
+.btn-one:hover{
+ opacity: 0.7;
+ background: #792525;
+ border: none;
+ color: #fcc810;
+}
+
+.btn-one .btn .btn-primary {
+  background: #792525;
+}
+
+.btn-disabled{
+  opacity: 0.8;
+}
+
+.alert-dismissible .close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: inherit;
+}
+
+button.close {
+	background-color: transparent;
+	border: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.alert {
+  text-align: center;
+  padding: 0.5%;
+
+}
+
+small, .small {
+	font-size: 80%;
+	font-weight: 400;
+}
