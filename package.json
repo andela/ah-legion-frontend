@@ -20,11 +20,11 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-toastify": "^5.0.1",
+    "validator": "^10.11.0",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "validator": "^10.11.0",
-    "sinon": "^7.3.1"
+    "smart-truncate": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,6 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "axios-mock-adapter": "^1.16.0",
     "coverage": "^0.1.0",
     "coveralls": "^3.0.3",
     "enzyme-to-json": "^3.3.5",
@@ -52,7 +53,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "moxios": "^0.4.0",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "redux-promise-middleware": "^6.1.0",
+    "sinon": "^7.3.1"
   },
   "jest": {
     "snapshotSerializers": [
