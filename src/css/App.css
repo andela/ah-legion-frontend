@@ -1,17 +1,29 @@
+/* Global style*/
 body {
   font-family: "Lato", sans-serif;
+  background: #fdf6f6;
 }
 
 #root {
-  background: #efefef;
+  background: #fdf6f6;
+}
+h3 {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .main-container {
   min-height: 650px;
 }
 
+.wrapper{
+  background: #fff;
+  padding:10px 30px;
+}
+/* Header*/
 .navbar-custom {
   background: #792525;
+  margin-bottom: 25px;
 }
 
 .navbar-custom .brand {
@@ -28,16 +40,33 @@ body {
 .navbar-custom .nav-link {
   color: #fcc810 !important;
   font-family: "Roboto Condensed", sans-serif;
+ 
 }
 
 .navbar-custom .nav-link:hover {
   opacity: 0.8;
 }
 
+.navbar-custom .get-started {
+  color: #fcc810 !important;
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid #fcc810;
+  border-radius: 3px;
+  margin-left: 15px;
+}
+.navbar-custom .get-started:hover {
+  opacity: 0.8;
+}
+.search-icon{
+  color: #fcc810;
+  padding: 8px 8px 0 2px;
+}
+/* Footer*/
 .footer {
-  color: grey;
+  color: gray;
   text-align: right;
-  padding: 10px;
+  background: #fdf6f6;
+
 }
 
 .get-started {
@@ -150,3 +179,79 @@ body {
 .btn-one .btn .btn-primary {
   background: #792525;
 }
+/* Home*/
+
+.author {
+  display: inline-block;
+  margin-top:12px;
+}
+img {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.meta,
+.description {
+  color: grey;
+  font-size: 13px;
+}
+.welcome-card {
+  background: #efebd5;
+  margin: 50px 0;
+}
+
+.number {
+  color: gray;
+  font-size: 34px;
+}
+
+.fa-google{
+  color: #4285F4;
+  font-size: 20px;
+  padding:5px;
+}
+.fa-twitter{
+  color: #0084b4;
+  font-size: 25px;
+  padding:5px;
+}
+.fa-facebook{
+  color: #4267b2;
+  font-size: 25px;
+  padding:5px;
+}
+.btn-auth{
+  text-align: left;
+  font-size: 16px;
+  color: #333;
+}
+.btn-auth:hover{
+border:1px solid #000000;
+background: transparent;
+color: #000000;
+}
+.home-view{
+  margin-bottom:50px;
+}
+.home-view img{
+  float: left;
+  clear:left;
+  width: 35%;
+  margin-right:20px;
+}
+
+.home-view-last{
+  margin-bottom:45px;
+}
+
+.home-view-last img{
+  float: right;
+  clear:left;
+  width: 20%;
+  margin:10px 20px 10px 10px;
+}
+.title-link{
+color: #000000;
+}
+.title-link:hover{
+  color: #000000;
+  }
