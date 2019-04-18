@@ -1,17 +1,14 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import AuthenticationModal from './AuthenticationModal';
 import store from '../store/store';
 import { LOGIN, REGISTER } from '../store/actions/actionTypes';
 import AlertModal from './AlertModal';
-import { isLoggedIn } from '../utils/tokenValidator';
 
-class Header extends React.Component {
-  state = {
-    LoggedIn: isLoggedIn,
-  };
-
+export class Header extends React.Component {
   dispatchLogin = () => {
     store.dispatch({ type: LOGIN });
   };
@@ -21,7 +18,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { LoggedIn } = this.state;
+    const { loggedIn } = this.props;
     return (
       <Navbar expand="lg" className="navbar-custom">
         <NavLink exact to="/" className="brand">
@@ -29,7 +26,7 @@ class Header extends React.Component {
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          {LoggedIn ? (
+          {loggedIn ? (
             <Nav className="ml-auto">
               <Nav.Item className="nav-link profile-dropdown">
                 Your Profile
@@ -59,4 +56,10 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+Header.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+};
+
+export const mapStateToProps = state => state.loginUser;
+
+export default connect(mapStateToProps)(Header);
