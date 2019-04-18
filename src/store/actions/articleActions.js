@@ -1,7 +1,7 @@
 import { PERSONAL_ARTICLES_FETCHED, AUTHENTICATION_FAILED } from './actionTypes';
-import axiosConfig from '../../axiosConfig';
+import { axiosConfigAuth } from '../../axiosConfig';
 
-const fetchPersonalArticles = () => dispatch => axiosConfig.request({
+const fetchPersonalArticles = () => dispatch => axiosConfigAuth.request({
   method: 'get',
   url: '/user/articles/',
 })

@@ -1,6 +1,6 @@
 import expect from 'expect';
 import promiseMiddleware from 'redux-promise-middleware';
-import axiosconfig from '../../axiosConfig';
+import { axiosConfigAuth } from '../../axiosConfig';
 import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -16,10 +16,10 @@ describe('async actions', () => {
   const middlewares = [promiseMiddleware()];
 
   beforeEach(() => {
-    moxios.install(axiosconfig);
+    moxios.install(axiosConfigAuth);
   });
   afterEach(() => {
-    moxios.uninstall(axiosconfig);
+    moxios.uninstall(axiosConfigAuth);
   });
   it('it dispatches PROFILE_FETCHED on fetchProfile', () => {
     const payload = { errors };
