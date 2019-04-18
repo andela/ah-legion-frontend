@@ -3,7 +3,7 @@ import loginReducer from "../../../store/reducers/LoginReducer";
 
 describe("loginReducer", () => {
   const initialState = {
-    logged_in: false,
+    loggedIn: false,
     errors: ""
   };
   it("should dispatch success action on login success", () => {
@@ -11,7 +11,7 @@ describe("loginReducer", () => {
       type: LOGIN_SUCCESS
     };
     const successState = {
-      logged_in: true,
+      loggedIn: true,
       errors: ""
     };
     expect(loginReducer(initialState, loginSuccess)).toEqual(successState);
@@ -22,11 +22,11 @@ describe("loginReducer", () => {
       payload: "A user with this email and password was not found"
     };
     const failureState = {
-      logged_in: false,
+      loggedIn: false,
       errors: loginFail.payload
     };
     const successState = {
-      logged_in: true,
+      loggedIn: true,
       errors: ""
     };
     expect(loginReducer(initialState, loginFail)).toEqual(failureState);
@@ -38,7 +38,7 @@ describe("loginReducer", () => {
       type: LOGIN_TRIAL
     };
     const defaultState = {
-      logged_in: false,
+      loggedIn: false,
       errors: ""
     };
     expect(loginReducer(initialState, invalidType)).toEqual(defaultState);

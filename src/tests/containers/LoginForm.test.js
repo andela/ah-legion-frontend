@@ -162,7 +162,7 @@ describe("mapStateToProps function", () => {
   it("should map the state we pass to the props", () => {
     const state = {
       loginUser: {
-        logged_in: false,
+        loggedIn: false,
         errors: ""
       }
     };

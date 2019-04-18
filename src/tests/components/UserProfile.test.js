@@ -129,9 +129,7 @@ describe('<UserProfileComponent />', () => {
   it('Should update state on receiving errors in props', () => {
     const wrapper = shallow(<UserProfileComponent {...props} />);
     const wrapperInstance = wrapper.instance();
-    console.log(wrapperInstance.state)
     wrapper.setProps({profileUpdated:true,authenticated:true, error:true, errors: {errors: {username:'not good',profile : {website:['thats not a good one']}}}})
-    console.log(wrapperInstance)
     const { formErrorFields } = wrapperInstance.state;
     expect(formErrorFields).toEqual(["username","profile","website",]);
     });

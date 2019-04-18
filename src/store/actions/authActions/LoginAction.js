@@ -24,7 +24,7 @@ const loginAction = loginData => dispatch => axiosConfig.request({
     });
     dispatch({
       type: IS_LOADING,
-      payload: false,
+      payload: { isLoading: false },
     });
   })
   .catch((error) => {
@@ -34,7 +34,7 @@ const loginAction = loginData => dispatch => axiosConfig.request({
     });
     dispatch({
       type: IS_LOADING,
-      payload: false,
+      payload: { isLoading: false },
     });
   });
 

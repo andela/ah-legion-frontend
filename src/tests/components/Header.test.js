@@ -1,10 +1,12 @@
 import { shallow, mount } from "enzyme";
-import Header from "../../components/Header";
+import { Header } from "../../components/Header";
 import React from "react";
-import { isLoggedIn } from '././../../utils/tokenValidator';
 
 describe("Header", () => {
-  const component = shallow(<Header />);
+  const props = {
+    loggedIn: false,
+  }
+  const component = shallow(<Header {...props}/>);
   const componentInstance = component.instance();
   const createSpy = toSpy => jest.spyOn(componentInstance, toSpy);
   it("renders one Header", () => {
@@ -24,11 +26,18 @@ describe("Header", () => {
     register.simulate("click");
     expect(dispatchRegister).toHaveBeenCalled();
   });
-  it("shows profile icon dropdown when a user logs in", () => {
+})
 
-    component.setState({ LoggedIn: true})
-    const profileDropdown = component.find(".profile-dropdown");
+describe('Header when a user logs in', () => {
+  it("shows profile icon dropdown when a user logs in", () => {
+    const props = {
+      loggedIn: true
+    }
+    const wrapper = shallow(<Header {...props} />)
+
+    const profileDropdown = wrapper.find(".profile-dropdown");
     expect(profileDropdown.length).toEqual(1);
-    expect(component.find(".login").length).toEqual(0);
+    expect(wrapper.find(".login").length).toEqual(0);
   });
 });
+

@@ -42,7 +42,7 @@ export class LoginForm extends React.Component {
         formErrors: [],
       });
       const data = { email, password };
-      store.dispatch({ type: IS_LOADING, payload: true });
+      store.dispatch({ type: IS_LOADING, payload: { isLoading: true } });
       LoginUser(data);
     } else {
       this.setState({
@@ -139,7 +139,7 @@ export class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   loginUser: PropTypes.shape({
-    logged_in: PropTypes.bool,
+    loggedIn: PropTypes.bool,
     errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     isLoading: PropTypes.bool,
   }).isRequired,
