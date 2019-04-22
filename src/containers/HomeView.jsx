@@ -5,9 +5,10 @@ import Home from '../components/Home';
 import { fetchAllArticles } from '../store/actions/articles';
 
 export class HomeView extends Component {
-  componentDidMount() {
+  componentWillMount() {
+    const next = `${process.env.REACT_APP_BASE_URL}articles/`;
     const { fetchArticles } = this.props;
-    fetchArticles();
+    fetchArticles(next);
   }
 
   render() {
@@ -28,10 +29,11 @@ HomeView.defaultProps = {
 };
 export const mapStateToProps = (state) => {
   const { articles } = state;
-  return { articles };
+  const { next } = articles.articles;
+  return { articles, next };
 };
 export const mapDispatchToProps = dispatch => ({
-  fetchArticles: () => dispatch(fetchAllArticles()),
+  fetchArticles: next => dispatch(fetchAllArticles(next)),
 });
 export default connect(
   mapStateToProps,

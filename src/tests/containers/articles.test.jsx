@@ -8,19 +8,18 @@ import { DraftsView } from '../../containers/DraftsView';
 import Home from '../../components/Home';
 import Drafts from '../../components/Drafts';
 
-describe('HomeView', () => {
-  it('renders all divs, h3 and h2 correctly', () => {
-    const component = shallow(<HomeView articles={containerArticles} />);
+describe("HomeView", () => {
+  it("renders all divs, h3 and h2 correctly", () => {
+    const props = {
+      fetchArticles: jest.fn()
+    };
+    const component = shallow(
+      <HomeView articles={containerArticles} {...props} />
+    );
     expect(component.contains(<Home />)).toBeTruthy();
   });
 });
-describe('HomeView map props to state', () => {
-  it('should return the initial state', () => {
-    expect(mapStateToProps({ articles })).toEqual({
-      articles,
-    });
-  });
-});
+
 
 describe('HomeView  MapDispatchToProps', () => {
   const dispatch = jest.fn();
@@ -36,6 +35,19 @@ describe('DraftsView', () => {
   });
 });
 
+describe("HomeView map props to state", () => {
+  it("should return the initial state", () => {
+    const state = {
+      articles: {articles: {next: ''}},
+    };
+
+    const expectedState = {
+      articles: {articles: {next: ''}},
+      next: '',
+    }
+    expect(mapStateToProps({...state})).toEqual(expectedState);
+  });
+});
 
 describe('CreateArticleView', () => {
   function setup() {

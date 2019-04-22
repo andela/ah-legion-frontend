@@ -43,7 +43,7 @@ describe('async actions', () => {
         response: articles.data,
       });
     });
-    const expectedActionTypes = [FETCH_ALL_ARTICLES_FAIL];
+    const expectedActionTypes = [FETCH_ALL_ARTICLES_FAIL, "IS_LOADING"];
 
     return store.dispatch(fetchAllArticles()).then(() => {
       const dispatchedActions = store.getActions();
@@ -62,7 +62,7 @@ describe('async actions', () => {
         response: articles.data,
       });
     });
-    const expectedActionTypes = [FETCH_ALL_ARTICLES_FAIL];
+    const expectedActionTypes = [FETCH_ALL_ARTICLES_FAIL, "IS_LOADING"];
 
     return store.dispatch(fetchAllArticles()).then(() => {
       const dispatchedActions = store.getActions();
