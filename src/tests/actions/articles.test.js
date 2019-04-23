@@ -22,6 +22,10 @@ import {
 } from '../../store/actions/actionTypes';
 import { articles, article } from '../testData';
 import { mapStateToProps } from '../../containers/CreateArticleView';
+import { fetchArticles, fetchArticlesFail } from '../../store/actions/articles';
+import { FETCH_ALL_ARTICLES, } from '../../store/actions/actionTypes';
+import { error } from '../testData';
+import mapDispatchToProps from '../../components/articles/Articles';
 
 const middleware = [thunk];
 const mockStore = configureStore(middleware);

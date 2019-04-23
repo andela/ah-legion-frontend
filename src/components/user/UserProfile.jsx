@@ -232,7 +232,7 @@ export class UserProfileComponent extends Component {
               <CardHeader>
                 <h5 className="title">Edit Your Profile</h5>
               </CardHeader>
-              <CardBody>
+              <CardBody className="form-card-body">
                 <Form className="input-form" id="user-input-form">
                   <Row>
                     <Col className="pr-md-1" md="5">
@@ -438,4 +438,3 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfileComponent);
-

@@ -1,4 +1,7 @@
-import { PERSONAL_ARTICLES_FETCHED, AUTHENTICATION_FAILED } from './actionTypes';
+import {
+  PERSONAL_ARTICLES_FETCHED,
+  AUTHENTICATION_FAILED,
+} from './actionTypes';
 import { axiosConfigAuth } from '../../axiosConfig';
 
 const fetchPersonalArticles = () => dispatch => axiosConfigAuth.request({
@@ -17,5 +20,4 @@ const fetchPersonalArticles = () => dispatch => axiosConfigAuth.request({
       payload: err.response,
     });
   });
-
 export default fetchPersonalArticles;

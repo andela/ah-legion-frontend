@@ -9,6 +9,7 @@ import ResetPassword from '../components/ResetPassword';
 import CreateArticleView from '../containers/CreateArticleView';
 import DraftsView from '../containers/DraftsView';
 import Login from '../components/Login';
+import AuthorProfile from '../components/user/AuthorProfile';
 
 const Routes = () => (
   <BrowserRouter>
@@ -20,6 +21,7 @@ const Routes = () => (
       <Route path="/login" component={Login} />
       <ProtectedRoute path="/article/create" component={CreateArticleView} />
       <ProtectedRoute path="/articles/drafts" component={DraftsView} />
+      <Route path="/profiles/:username" component={AuthorProfile} />
       <Footer />
     </div>
   </BrowserRouter>

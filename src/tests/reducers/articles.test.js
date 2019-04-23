@@ -1,7 +1,8 @@
 import {
   FETCH_ALL_ARTICLES,
-  CREATE_ARTICLE,
+  CREATE_ARTICLE_FAIL,
   FETCH_ARTICLES_BY_AUTHOR,
+  AUTHOR_ARTICLES_FETCH_FAILED,
   EDIT_ARTICLE,
   FETCH_ALL_ARTICLES_FAIL,
   FETCH_ARTICLES_BY_AUTHOR_FAIL,
@@ -13,6 +14,7 @@ import reducer from '../../store/reducers/articlesReducer';
 import {
   articles, error, article,
 } from '../testData';
+import { isUndefined } from 'util';
 
 
 describe('register reducer', () => {
@@ -36,123 +38,91 @@ describe('register reducer', () => {
         },
       }),
     ).toEqual(
-      {
-        articles: { articles },
-      },
-    );
-  });
-  it('should change state on action type FETCH_ALL_ARTICLES_FAIL', () => {
-    expect(
-      reducer({}, {
-        type: FETCH_ALL_ARTICLES_FAIL,
-        error: {
-          error,
-        },
-      }),
-    ).toEqual(
-      {
-        articles: { error },
-      },
-    );
-  });
-  it('should change state on action type CREATE_ARTICLE', () => {
-    expect(
-      reducer({}, {
-        type: CREATE_ARTICLE,
-        article: {
-          article,
-        },
-      }),
-    ).toEqual(
-      {
-        article: { article },
-      },
-    );
-  });
-  it('should change state on action type FETCH_ALL_ARTICLES_BY_AUTHOR', () => {
-    expect(
-      reducer({}, {
-        type: FETCH_ARTICLES_BY_AUTHOR,
-        authorArticles: {
-          articles,
-        },
-      }),
-    ).toEqual(
-      {
-        authorArticles: { articles },
-      },
-    );
-  });
-  it('should change state on action type FETCH_ARTICLES_BY_AUTHOR_FAIL', () => {
-    expect(
-      reducer({}, {
-        type: FETCH_ARTICLES_BY_AUTHOR_FAIL,
-        authorArticles: {
-          error,
-        },
-      }),
-    ).toEqual(
-      {
-        authorArticles: { error },
-      },
+      {"articles": {"articles": [{"author": {"username": "Josh_Moracha"}, "created_at": "2019-04-09T20:56:04.410399+03:00", "description": "Ever wonder how?", "id": 7, "reading_time": "1 minutes", "title": "Andela TIA"}, {"author": {"username": "Josh_Moracha"}, "created_at": "2019-04-09T20:56:04.410399+03:00", "description": "Ever wonder how?", "id": 64, "reading_time": "1 minutes", "title": "Andela TIA"}]}}
     );
   });
   it('should change state on action type EDIT_ARTICLE', () => {
     expect(
       reducer({}, {
         type: EDIT_ARTICLE,
-        editedArticle: {
-          article,
+        articles: {
+          articles,
         },
-        slug: 'dragons',
       }),
     ).toEqual(
-      {
-        editedArticle: { article },
-      },
+      {"editedArticle": undefined}
     );
   });
-  it('should change state on action type EDIT_ARTICLE_FAIL', () => {
+  it('should change state on action type EDIT_ARTICLE', () => {
     expect(
       reducer({}, {
-        type: EDIT_ARTICLE_FAIL,
-        editedArticle: {
-          error,
+        type: EDIT_ARTICLE,
+        articles: {
+          articles,
         },
       }),
     ).toEqual(
-      {
-        editedArticle: { error },
-      },
+      {"editedArticle": undefined}
+    );
+  });
+  it('should change state on action type CREATE_ARTICLE_FAIL', () => {
+    expect(
+      reducer({}, {
+        type: CREATE_ARTICLE_FAIL,
+        articles: {
+          articles,
+        },
+      }),
+    ).toEqual(
+      {"editedArticle": undefined}
+    );
+  });
+  it('should change state on action type FETCH_ARTICLES_BY_AUTHOR_FAIL', () => {
+    expect(
+      reducer({}, {
+        type: FETCH_ARTICLES_BY_AUTHOR_FAIL,
+        articles: {
+          articles,
+        },
+      }),
+    ).toEqual(
+      {"editedArticle": undefined}
+    );
+  });
+  it('should change state on action type AUTHOR_ARTICLES_FETCH_FAILED', () => {
+    expect(
+      reducer({}, {
+        type: AUTHOR_ARTICLES_FETCH_FAILED,
+        articles: {
+          articles,
+        },
+      }),
+    ).toEqual(
+      {"editedArticle": undefined}
     );
   });
   it('should change state on action type PUBLISH_ARTICLE', () => {
     expect(
-      reducer({}, {
+      reducer(undefined, {
         type: PUBLISH_ARTICLE,
-        publishedArticle: {
-          article,
-        },
-        slug: 'dragons',
-      }),
-    ).toEqual(
-      {
-        publishedArticle: { article },
-      },
-    );
-  });
-  it('should change state on action type PUBLISH_ARTICLE_FAIL', () => {
-    expect(
-      reducer({}, {
-        type: PUBLISH_ARTICLE_FAIL,
-        publishedArticle: {
-          error,
+        articles: {
+          articles,
         },
       }),
     ).toEqual(
-      {
-        publishedArticle: { error },
-      },
+      {"article": [], "articles": [], "authorArticles": [], "editedArticle": [], "publishedArticle": undefined}
     );
   });
+});
+
+
+it('should handle FETCH_ALL_ARTICLES_FAIL ', () => {
+  expect(
+    reducer(undefined, {
+      type: FETCH_ALL_ARTICLES_FAIL,
+      error,
+    }),
+  ).toEqual(
+    {"article": [], "articles": "Network Error at createError (https://ah-legion-staging.herokuapp.com/static/js/0.chunk.js:1006:15) at XMLHttpRequest.handleError (https://ah-legion-staging.hssserokuapp.com/static/js/0.chunk.js:557:14)", "authorArticles": [], "editedArticle": [], "publishedArticle": []}
+  );
 });
