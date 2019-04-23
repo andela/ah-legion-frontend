@@ -5,9 +5,9 @@ import {
   PROFILE_UPDATE_FAILED,
   AUTHENTICATION_FAILED,
 } from './actionTypes';
-import axiosConfig from '../../axiosConfig';
+import { axiosConfigAuth } from '../../axiosConfig';
 
-export const fetchProfile = () => dispatch => axiosConfig.request({
+export const fetchProfile = () => dispatch => axiosConfigAuth.request({
   method: 'get',
   url: 'user/',
 })
@@ -23,7 +23,7 @@ export const fetchProfile = () => dispatch => axiosConfig.request({
       payload: error.response.data,
     });
   });
-export const updateProfile = updatedProfileInfo => dispatch => axiosConfig.request({
+export const updateProfile = updatedProfileInfo => dispatch => axiosConfigAuth.request({
   method: 'put',
   url: 'user/',
   data: updatedProfileInfo,
