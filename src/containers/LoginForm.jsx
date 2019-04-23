@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import loginAction from '../store/actions/authActions/LoginAction';
 import validateLoginForm from '../utils/validation';
 import store from '../store/store';
-import { REGISTER, IS_LOADING } from '../store/actions/actionTypes';
+import { REGISTER, IS_LOADING, INITIATE_RESET } from '../store/actions/actionTypes';
 import ButtonSpinner from '../components/ButtonSpinner';
 
 export class LoginForm extends React.Component {
@@ -56,12 +56,16 @@ export class LoginForm extends React.Component {
     store.dispatch({ type: REGISTER });
   };
 
+  callInitiateResetForm = () => {
+    store.dispatch({ type: INITIATE_RESET });
+  }
+
   render() {
     const { loginUser } = this.props;
     const { errors, isLoading } = loginUser;
     const { formErrors, touched, show } = this.state;
     return (
-      <div>
+      <div className="center">
         <Form className="main-container" onSubmit={this.handleSubmit}>
           <Form.Group name="email">
             {errors && (
@@ -109,7 +113,21 @@ export class LoginForm extends React.Component {
               placeholder="Password"
               onChange={this.handleChange}
             />
+            <Form.Text>
+            Forgot password?
+            &nbsp;
+              <span
+                role="button"
+                tabIndex={0}
+                onClick={this.callInitiateResetForm}
+                onKeyPress={this.callInitiateResetForm}
+                className="swap-modal-span"
+              >
+              Click here.
+              </span>
+            </Form.Text>
           </Form.Group>
+
           <Button className="btn-one" type="submit" disabled={isLoading}>
             {
               isLoading && <ButtonSpinner className="btn-disabled btn-one" />
@@ -129,7 +147,8 @@ export class LoginForm extends React.Component {
               Click here
             </span>
             &nbsp;
-            to register.
+            to register.&nbsp;
+
           </p>
         </Form>
       </div>

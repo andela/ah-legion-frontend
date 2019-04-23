@@ -7,6 +7,7 @@ describe(' alert modal reducer', () => {
       {
         showAlert: false,
         message: '',
+        colorClass: '',
       }
     )
   })
@@ -18,12 +19,14 @@ describe(' alert modal reducer', () => {
         payload: {
           showAlert: true,
           message: 'message',
+          colorClass: 'alert-success',
         }
       })
     ).toEqual(
       {
         showAlert: true,
         message: 'message',
+        colorClass: 'alert-success',
       }
     )
   })

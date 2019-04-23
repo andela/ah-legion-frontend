@@ -12,10 +12,6 @@ h3 {
   font-weight: bold;
 }
 
-.main-container {
-  min-height: 650px;
-}
-
 .wrapper{
   background: #fff;
   padding:10px 30px;
@@ -96,6 +92,11 @@ h3 {
   justify-content: center;
 }
 
+.authentication-modal-header h3 {
+  font-size: 30px;
+  font-weight: 500;
+}
+
 .authentication-modal-footer {
   border: none !important;
 }
@@ -120,7 +121,7 @@ h3 {
   opacity: 1 !important;
   background-color: white;
   max-height: fit-content;
-  min-height: 80%;
+  min-height: 60%;
 }
 
 .modal-dialog {
@@ -137,7 +138,7 @@ h3 {
 
 .center {
   margin: auto;
-  padding: 0 10% 3% 10%;
+  padding: 0 10% 0 10%;
 }
 
 .modal-title {
@@ -150,12 +151,16 @@ h3 {
 
 #alert-modal .modal-content {
   max-height: fit-content;
-  min-height: 30%;
+  min-height: 20%;
 }
 
 .alert-modal-header {
   padding: 5px;
   padding-right: 10px;
+}
+
+.alert-modal-body {
+  text-align: center;
 }
 
 .btn-one {

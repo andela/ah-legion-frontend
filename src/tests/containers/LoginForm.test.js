@@ -19,7 +19,7 @@ describe("<LoginForm />", () => {
     const createSpy = toSpy => jest.spyOn(wrapperInstance, toSpy);
     const swapModal = createSpy("swapModal");
     wrapperInstance.forceUpdate();
-    const span = wrapper.find("span");
+    const span = wrapper.find("span").at(1);
     span.simulate("click");
     expect(swapModal).toHaveBeenCalled();
   });

@@ -1,17 +1,27 @@
-import { SHOW_MODAL, REGISTER, LOGIN } from '../actions/actionTypes';
+import { SHOW_MODAL, REGISTER, LOGIN, INITIATE_RESET, PASSWORD_RESET } from '../actions/actionTypes';
 
 const initialState = {
-  isRegister: false,
+  component: '',
   modalShow: false,
 };
 
 const registerPayload = {
-  isRegister: true,
+  component: 'register',
   modalShow: true,
 };
 
 const loginPayload = {
-  isRegister: false,
+  component: 'login',
+  modalShow: true,
+};
+
+const intiateResetPayload = {
+  component: 'initiate-reset',
+  modalShow: true,
+};
+
+const passwordResetPayload = {
+  component: 'password-reset',
   modalShow: true,
 };
 
@@ -24,6 +34,10 @@ function modalReducer(state = initialState, action) {
       return Object.assign({}, state, registerPayload);
     case (LOGIN):
       return Object.assign({}, state, loginPayload);
+    case (INITIATE_RESET):
+      return Object.assign({}, state, intiateResetPayload);
+    case (PASSWORD_RESET):
+      return Object.assign({}, state, passwordResetPayload);
     default:
       break;
   }

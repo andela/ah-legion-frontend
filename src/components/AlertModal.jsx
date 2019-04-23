@@ -17,13 +17,13 @@ export class ConnectedAlertModal extends React.Component {
   }
 
   render() {
-    const { showAlert, message } = this.props;
+    const { showAlert, message, colorClass } = this.props;
     return (
       <Modal className="authentication-modal" id="alert-modal" show={showAlert} onHide={this.handleClose}>
-        <Modal.Header className="alert-modal-header" closeButton>
+        <Modal.Header className={`alert-modal-header ${colorClass}`} closeButton>
           <h4 className="header-txt">Message</h4>
         </Modal.Header>
-        <Modal.Body className="authentication-modal-body">{message}</Modal.Body>
+        <Modal.Body className="alert-modal-body">{message}</Modal.Body>
         <Modal.Footer className="authentication-modal-footer">
           <Button className="btn-one" variant="primary" onClick={this.handleClose}>
               OK
@@ -38,10 +38,12 @@ ConnectedAlertModal.propTypes = {
   showAlert: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
   dispatch: PropTypes.func,
+  colorClass: PropTypes.string,
 };
 
 ConnectedAlertModal.defaultProps = {
   dispatch: store.dispatch,
+  colorClass: 'alert success',
 };
 
 export const mapStateToProps = state => state.alertModalState;
