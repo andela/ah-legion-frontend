@@ -6,11 +6,7 @@ import ButtonSpinner from './ButtonSpinner';
 import { passwordReset } from '../store/actions/passwordResetActions';
 import validate from '../utils/registerFormValidator';
 import store from '../store/store';
-import { IS_LOADING, REDIRECT } from '../store/actions/actionTypes';
-
-const results = window.location.href.split('/');
-const token = results[results.length - 1];
-store.dispatch({ type: REDIRECT, payload: { redirect: true } });
+import { IS_LOADING } from '../store/actions/actionTypes';
 
 export class ConnectedPasswordResetForm extends Component {
   constructor() {
@@ -28,7 +24,7 @@ export class ConnectedPasswordResetForm extends Component {
 
   handleSubmit = (event) => {
     const { password, confirmPassword } = this.state;
-    const { PasswordReset } = this.props;
+    const { PasswordReset, token } = this.props;
     event.preventDefault();
     const errors = validate('', '', password, confirmPassword);
     if (!errors.password && !errors.confirmPassword) {
@@ -59,7 +55,7 @@ export class ConnectedPasswordResetForm extends Component {
             <Form.Text className="error-text">{errors.password}</Form.Text>
             <Form.Control
               className={errors.password && 'error'}
-              type="text"
+              type="password"
               name="password"
               id="password"
               onChange={this.handleChange}
@@ -70,7 +66,7 @@ export class ConnectedPasswordResetForm extends Component {
             <Form.Text className="error-text">{errors.confirmPassword}</Form.Text>
             <Form.Control
               className={errors.confirmPassword && 'error'}
-              type="text"
+              type="password"
               name="confirmPassword"
               onChange={this.handleChange}
             />
@@ -90,6 +86,7 @@ export class ConnectedPasswordResetForm extends Component {
 ConnectedPasswordResetForm.propTypes = {
   PasswordReset: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 export const mapStateToProps = state => state.resetPasswordState;

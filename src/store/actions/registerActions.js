@@ -19,7 +19,7 @@ export function registerUser(payload) {
       });
       dispatch({
         type: SHOW_ALERT,
-        payload: { message: response.data.user.message, showAlert: true },
+        payload: { message: response.data.user.message, showAlert: true, colorClass: 'alert-success' },
       });
       dispatch({ type: IS_LOADING, payload: { isLoading: false } });
       dispatch(showErrors({}));

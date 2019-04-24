@@ -23,3 +23,5 @@ export const PASSWORD_RESET = 'PASSWORD_RESET';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const REDIRECT = 'REDIRECT';
 export const LOGOUT = 'LOGOUT';
+export const SET_TOKEN = 'SET_TOKEN';
+export const USER_VERIFIED = 'USER_VERIFIED';
