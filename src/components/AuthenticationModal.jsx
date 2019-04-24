@@ -7,7 +7,7 @@ import RegisterForm from './RegisterForm';
 import Login from './Login';
 import ShowModal from '../store/actions/changeFormAction';
 import { showErrors } from '../store/actions/registerActions';
-import { IS_LOADING, REDIRECT } from '../store/actions/actionTypes';
+import { IS_LOADING } from '../store/actions/actionTypes';
 import InitiateResetForm from './InitateResetForm';
 import PasswordResetForm from './PasswordResetForm';
 
@@ -18,7 +18,6 @@ export class ConnectedAuthenticationModal extends React.Component {
       dispatch(ShowModal({ modalShow: false }));
       dispatch({ type: IS_LOADING, payload: { isLoading: false } });
       dispatch(showErrors({}));
-      dispatch({ type: REDIRECT, payload: { redirect: false } });
     };
     let CurrentComponent;
     let headerMessage;

@@ -7,7 +7,7 @@ describe('Reset password Reset form', () => {
     PasswordReset: jest.fn(() => {
       Promise.resolve();
     }),
-    ...{ isLoading: false },
+    ...{ isLoading: false, token: 'blahblah'},
   };
 
   let state = {
@@ -44,6 +44,19 @@ describe('Reset password Reset form', () => {
     instance.handleSubmit(event);
     const errorMsg = instance.state.errors.password
     expect(errorMsg).toBe("Password should be at least 8 characters long")
+  });
+
+  it('should show errors when passwords are not equal', () => {
+    const wrapper = mount(<ConnectedPasswordResetForm {...props} />);
+    const instance = wrapper.instance()
+    const event = {
+      preventDefault: jest.fn()
+    };
+
+    instance.setState({password:'fsbdgbhndss', ConfirmPassword: 'vtbgrw'});
+    instance.handleSubmit(event);
+    const errorMsg = instance.state.errors.confirmPassword
+    expect(errorMsg).toBe("Passwords do not match")
   });
 
   it("should call handleChange when input value is changed", () => {

@@ -1,26 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import store from '../store/store';
-import { PASSWORD_RESET } from '../store/actions/actionTypes';
+import { PASSWORD_RESET, SET_TOKEN } from '../store/actions/actionTypes';
 
-export class ConnectedResetPassword extends React.Component {
+class ResetPassword extends React.Component {
   componentDidMount() {
     store.dispatch({ type: PASSWORD_RESET });
+    const { match: { params } } = this.props;
+    const { resetToken } = params;
+    store.dispatch({ type: SET_TOKEN, payload: { token: resetToken } });
   }
 
   render() {
-    const { redirect } = this.props;
-    return (<>{redirect && <Redirect to="/" />}</>);
+    return (<Redirect to="/" />);
   }
 }
 
-ConnectedResetPassword.propTypes = {
-  redirect: PropTypes.bool.isRequired,
+ResetPassword.propTypes = {
+  match: PropTypes.shape({}).isRequired,
 };
 
-export const mapStateToProps = state => state.resetPasswordState;
-
-const ResetPassword = connect(mapStateToProps)(ConnectedResetPassword);
 export default ResetPassword;
