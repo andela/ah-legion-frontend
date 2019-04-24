@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL } from "../../../store/actions/actionTypes";
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "../../../store/actions/actionTypes";
 import loginReducer from "../../../store/reducers/LoginReducer";
 
 describe("loginReducer", () => {
@@ -15,6 +15,17 @@ describe("loginReducer", () => {
       errors: ""
     };
     expect(loginReducer(initialState, loginSuccess)).toEqual(successState);
+  });
+  it("should dispatch logout action when the user logs out", () => {
+    const logout = {
+      type: LOGOUT,
+      payload: false,
+    };
+    const logoutState = {
+      loggedIn: false,
+      errors: ""
+    };
+    expect(loginReducer(initialState, logout)).toEqual(logoutState);
   });
   it("should dispatch failure action on login fail", () => {
     const loginFail = {

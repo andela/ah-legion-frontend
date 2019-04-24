@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, IS_LOADING } from '../actions/actionTypes';
+import { LOGIN_SUCCESS, LOGIN_FAIL, IS_LOADING, LOGOUT } from '../actions/actionTypes';
 import { isLoggedIn } from '../../utils/tokenValidator';
 
 const initialState = {
@@ -25,6 +25,11 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload.isLoading,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        loggedIn: action.payload,
       };
     default:
       return state;
