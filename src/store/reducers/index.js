@@ -22,4 +22,5 @@ const rootReducer = combineReducers({
   editedArticle: articlesReducer,
   publishedArticle: articlesReducer,
 });
+
 export default rootReducer;

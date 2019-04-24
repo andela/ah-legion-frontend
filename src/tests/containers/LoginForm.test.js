@@ -1,8 +1,15 @@
 import React from "react";
 import { shallow } from "enzyme";
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
 import { LoginForm } from "../../containers/LoginForm";
 import { mapStateToProps, mapDispatchToProps } from "../../containers/LoginForm";
 import { Alert } from "react-bootstrap";
+import { INITIATE_RESET } from "../../store/actions/actionTypes";
+
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
+const store = mockStore();
 
 describe("<LoginForm />", () => {
   const props = {
@@ -156,6 +163,24 @@ describe("<LoginForm /> when there are errors in the password input", () => {
   expect(wrapper.find("div.password-warning").text()).toEqual(
     "Please provide your password"
   );
+});
+
+describe('LoginForm callInitiateReseForm', () => {
+  it("should dispatch an action when called", () => {
+  const props = {
+    errors: "",
+    LoginUser: jest.fn(() => {
+      Promise.resolve();
+    }),
+    loginUser: { errors: "" },
+    validateLoginForm: jest.fn()
+  };
+  const wrapper = shallow(<LoginForm {...props} />);
+  const wrapperInstance = wrapper.instance();
+  const spy = jest.spyOn(wrapperInstance, 'callInitiateResetForm');
+  wrapperInstance.callInitiateResetForm();
+  expect(spy).toHaveBeenCalled();
+});
 });
 
 describe("mapStateToProps function", () => {

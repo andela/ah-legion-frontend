@@ -5,6 +5,7 @@ import { Container, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import RegisterForm from './RegisterForm';
 import Login from './Login';
+import SocialAccount from './SocialAccount';
 import ShowModal from '../store/actions/changeFormAction';
 import { showErrors } from '../store/actions/registerActions';
 import { IS_LOADING } from '../store/actions/actionTypes';
@@ -59,6 +60,7 @@ export class ConnectedAuthenticationModal extends React.Component {
         <Modal.Body className="authentication-modal-body">
           <Container>
             <CurrentComponent />
+            <SocialAccount />
           </Container>
         </Modal.Body>
       </Modal>

@@ -44,7 +44,7 @@ const mapStateToProps = state => ({
   personalArticles: state.personalArticles,
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   fetchPersonalUserArticles: () => {
     dispatch(fetchPersonalArticles());
   },
