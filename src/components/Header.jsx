@@ -1,11 +1,11 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Dropdown, DropdownButton } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AuthenticationModal from './AuthenticationModal';
 import store from '../store/store';
-import { LOGIN, REGISTER } from '../store/actions/actionTypes';
+import { LOGIN, REGISTER, LOGOUT } from '../store/actions/actionTypes';
 import AlertModal from './AlertModal';
 
 export class Header extends React.Component {
@@ -16,6 +16,11 @@ export class Header extends React.Component {
   dispatchRegister = () => {
     store.dispatch({ type: REGISTER });
   };
+
+  dispatchLogout = () => {
+    localStorage.clear();
+    store.dispatch({ type: LOGOUT, payload: false });
+  }
 
   render() {
     const { loggedIn } = this.props;
@@ -29,7 +34,10 @@ export class Header extends React.Component {
           {loggedIn ? (
             <Nav className="ml-auto">
               <Nav.Item className="nav-link profile-dropdown">
-                Your Profile
+                <DropdownButton alignRight id="dropdown-basic" className="profile-dropdown" title="Profile">
+                  <Dropdown.Item>Profile</Dropdown.Item>
+                  <Dropdown.Item className="logout" onClick={this.dispatchLogout}>Logout</Dropdown.Item>
+                </DropdownButton>
               </Nav.Item>
             </Nav>
           ) : (

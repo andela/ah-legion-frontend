@@ -22,3 +22,4 @@ export const INITIATE_RESET = 'INITIATE_RESET';
 export const PASSWORD_RESET = 'PASSWORD_RESET';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const REDIRECT = 'REDIRECT';
+export const LOGOUT = 'LOGOUT';

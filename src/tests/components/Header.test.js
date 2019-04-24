@@ -1,4 +1,4 @@
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import { Header } from "../../components/Header";
 import React from "react";
 
@@ -26,6 +26,17 @@ describe("Header", () => {
     register.simulate("click");
     expect(dispatchRegister).toHaveBeenCalled();
   });
+  it("the header updates when the user logs out", () => {
+    const props = {
+      loggedIn: true,
+    }
+    const wrapper = shallow(<Header {...props} />)
+    const wrapperInstance = wrapper.instance();
+    const dispatchLogout = createSpy("dispatchLogout");
+    wrapperInstance.forceUpdate();
+    const logout = wrapper.find(".logout");
+    logout.simulate("click");
+  });
 })
 
 describe('Header when a user logs in', () => {
@@ -35,8 +46,8 @@ describe('Header when a user logs in', () => {
     }
     const wrapper = shallow(<Header {...props} />)
 
-    const profileDropdown = wrapper.find(".profile-dropdown");
-    expect(profileDropdown.length).toEqual(1);
+    const logout = wrapper.find(".logout");
+    expect(logout.length).toEqual(1);
     expect(wrapper.find(".login").length).toEqual(0);
   });
 });
