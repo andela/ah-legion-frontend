@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 // eslint-disable-next-line no-unused-vars
 import style from 'bootstrap/dist/css/bootstrap.css';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 import './index.scss';
 import './css/App.css';
 import Routes from './routes';

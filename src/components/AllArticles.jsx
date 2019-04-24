@@ -35,8 +35,7 @@ const AllArticles = ({ articles }) => (articles ? (
 ));
 
 AllArticles.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number,
-    PropTypes.string, PropTypes.array])),
+  articles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.array, PropTypes.object])),
 };
 
 AllArticles.defaultProps = {

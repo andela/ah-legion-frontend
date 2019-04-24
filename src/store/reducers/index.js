@@ -17,5 +17,9 @@ const rootReducer = combineReducers({
   loginUser: loginReducer,
   personalArticles: personalArticlesReducer,
   resetPasswordState: passwordResetReducer,
+  article: articlesReducer,
+  authorArticles: articlesReducer,
+  editedArticle: articlesReducer,
+  publishedArticle: articlesReducer,
 });
 export default rootReducer;

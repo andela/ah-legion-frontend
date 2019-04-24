@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navbar, Nav, Dropdown, DropdownButton } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Navbar, Nav, OverlayTrigger, Popover } from 'react-bootstrap';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AuthenticationModal from './AuthenticationModal';
@@ -23,7 +23,8 @@ export class Header extends React.Component {
   }
 
   render() {
-    const { loggedIn } = this.props;
+    const { loginUser } = this.props;
+    const authenticated = loginUser.loggedIn;
     return (
       <Navbar expand="lg" className="navbar-custom">
         <NavLink exact to="/" className="brand">
@@ -31,15 +32,26 @@ export class Header extends React.Component {
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          {loggedIn ? (
-            <Nav className="ml-auto">
-              <Nav.Item className="nav-link profile-dropdown">
-                <DropdownButton alignRight id="dropdown-basic" className="profile-dropdown" title="Profile">
-                  <Dropdown.Item>Profile</Dropdown.Item>
-                  <Dropdown.Item className="logout" onClick={this.dispatchLogout}>Logout</Dropdown.Item>
-                </DropdownButton>
-              </Nav.Item>
-            </Nav>
+          {authenticated ? (
+
+            <OverlayTrigger
+              trigger="click"
+              placement="bottom"
+              overlay={(
+                <Popover className="user-profile-container ml-auto">
+                  <Link to="/article/create" className="nav-dropdown">New Article</Link>
+                  <br />
+                  <br />
+                  <Link to="/articles/drafts" className="nav-dropdown">Drafts</Link>
+                  <hr />
+                  <Link to="/profile" className="nav-dropdown">Profile</Link>
+
+                </Popover>
+)}
+              rootClose
+            >
+              <span className="user-profile ml-auto"><img className="rounded-circle" src="https://marriedbiography.com/wp-content/uploads/2018/01/Enrique-Iglesias.jpg" alt="user" /></span>
+            </OverlayTrigger>
           ) : (
             <Nav className="ml-auto">
               <Nav.Item
@@ -55,6 +67,7 @@ export class Header extends React.Component {
                 Get Started
               </Nav.Item>
             </Nav>
+
           )}
         </Navbar.Collapse>
         <AuthenticationModal />
@@ -65,9 +78,13 @@ export class Header extends React.Component {
 }
 
 Header.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+  loginUser: PropTypes.bool.isRequired,
 };
 
-export const mapStateToProps = state => state.loginUser;
+
+export const mapStateToProps = (state) => {
+  const { loginUser } = state;
+  return { loginUser };
+};
 
 export default connect(mapStateToProps)(Header);
