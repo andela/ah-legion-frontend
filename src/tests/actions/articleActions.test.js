@@ -4,8 +4,9 @@ import { axiosConfigAuth } from '../../axiosConfig';
 import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import fetchPersonalArticles from '../../store/actions/articleActions';
+import fetchPersonalArticles, { fetchAuthorArticles } from '../../store/actions/articleActions';
 import profile from '../mockData/profile';
+import {fetchAllArticles} from '../../store/actions/articles';
 
 
 const middleware = [thunk];

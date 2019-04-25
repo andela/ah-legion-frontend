@@ -4,6 +4,7 @@ import AuthenticationModal, { mapStateToProps } from '../../components/Authentic
 import { ConnectedAuthenticationModal } from '../../components/AuthenticationModal';
 import store from '../../store/store';
 import { Provider } from 'react-redux';
+import {mapDispatchToProps} from '../../components/user/AuthorProfile';
 
 
 describe('AuthenticationModal', () => {
@@ -52,4 +53,11 @@ describe('MapStateToProps', () => {
     expect(mapStateToProps(state)).toEqual(expected)
   });
 });
-  
+
+describe('MapDispatchToProps', () => { 
+  const dispatch = jest.fn()
+  it('register user function is called', () => {
+    mapDispatchToProps(dispatch).getAuthorProfile('payload');
+    expect(dispatch).toHaveBeenCalled();
+  });
+});
