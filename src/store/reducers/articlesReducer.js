@@ -9,6 +9,8 @@ import {
   EDIT_ARTICLE_FAIL,
   PUBLISH_ARTICLE,
   PUBLISH_ARTICLE_FAIL,
+  VIEW_ARTICLES,
+  IS_LOADING,
 } from '../actions/actionTypes';
 
 export const initialState = {
@@ -17,6 +19,8 @@ export const initialState = {
   authorArticles: [],
   editedArticle: [],
   publishedArticle: [],
+  results: [],
+  loading: false,
 };
 
 export default function (state = initialState, action) {
@@ -70,6 +74,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         publishedArticle: action.error,
+      };
+    case VIEW_ARTICLES:
+      return {
+        ...state,
+        results: state.results.concat(action.payload.results),
+      };
+    case IS_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;
