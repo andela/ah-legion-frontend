@@ -60,7 +60,7 @@ export class ConnectedAuthenticationModal extends React.Component {
         <Modal.Body className="authentication-modal-body">
           <Container>
             <CurrentComponent />
-            <SocialAccount />
+            { (component === 'register' || component === 'login') && <SocialAccount /> }
           </Container>
         </Modal.Body>
       </Modal>

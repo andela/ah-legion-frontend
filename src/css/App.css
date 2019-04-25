@@ -127,7 +127,7 @@ h3 {
   opacity: 1 !important;
   background-color: white;
   max-height: fit-content;
-  min-height: 60%;
+  min-height: 35%;
 }
 
 .modal-dialog {

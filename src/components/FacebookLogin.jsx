@@ -5,23 +5,23 @@ import PropTypes from 'prop-types';
 import { facebookLoginAction } from '../store/actions/authActions/socialLoginAction';
 
 
-export const FacebookLogin = ({ facebookLogin, isRegister }) => (
+export const FacebookLogin = ({ facebookLogin, component }) => (
   <Button onClick={facebookLogin} variant="outline-secondary" className="btn-auth social-button facebook" block>
     <i className="fab fa-facebook" />
-    {isRegister ? 'Register ' : 'Login '}
+    {component === 'register' ? 'Register ' : 'Login '}
     with Facebook
   </Button>
 );
 
 FacebookLogin.propTypes = {
   facebookLogin: PropTypes.func.isRequired,
-  isRegister: PropTypes.bool.isRequired,
+  component: PropTypes.string.isRequired,
 };
 
 export const mapStateToProps = (state) => {
-  const { isRegister } = state.modalState;
+  const { component } = state.modalState;
   return {
-    isRegister,
+    component,
   };
 };
 

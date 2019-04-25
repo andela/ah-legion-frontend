@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { FacebookLogin , mapDispatchToProps } from '../../components/FacebookLogin';
+import { FacebookLogin , mapDispatchToProps, mapStateToProps } from '../../components/FacebookLogin';
 
 
 describe('GoogleComponent', () => {
@@ -11,7 +11,7 @@ describe('GoogleComponent', () => {
   })
 
   it("Should render with button", () => {
-      const component = shallow(<FacebookLogin isRegister={true} />);
+      const component = shallow(<FacebookLogin component='register' />);
       const button = component.find('button');
       expect(component.length).toBe(1);
   })
@@ -33,5 +33,13 @@ describe('MapDispatchToProps', () => {
   it('should dispatch facebookLogin', () => {
     mapDispatchToProps(dispatch).facebookLogin();
     expect(dispatch).toHaveBeenCalled();
+  });
+});
+
+describe('MapStateToProps', () => { 
+  const state = {modalState: { component: 'register', modalShow: true }}
+  const expected = { component: 'register'}
+  it('returns the modal state', () => {
+    expect(mapStateToProps(state)).toEqual(expected)
   });
 });
