@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { GoogleLogin, mapDispatchToProps } from '../../components/GoogleLogin';
-import { Button } from 'react-bootstrap';
+import { GoogleLogin, mapDispatchToProps, mapStateToProps } from '../../components/GoogleLogin';
 
 
 describe('Google Login component', () => {
@@ -11,13 +10,13 @@ describe('Google Login component', () => {
     expect(component.length).toBe(1);
   })
 
-  it("Should render with button", () => {
-    const component = shallow(<GoogleLogin isRegister={true} />);
+  it('Should render with button', () => {
+    const component = shallow(<GoogleLogin component='register' />);
     const button = component.find('button');
     expect(component.length).toBe(1);
   })
 
-  it("Should callfunction when button is clicked", () => {
+  it('Should callfunction when button is clicked', () => {
     const mockFn = jest.fn()
     const props = {
       googleLogin: mockFn
@@ -36,4 +35,11 @@ describe('MapDispatchToProps', () => {
       expect(dispatch).toHaveBeenCalled();
     });
   });
-  
+
+describe('MapStateToProps', () => { 
+    const state = {modalState: { component: 'register', modalShow: true }}
+    const expected = { component: 'register'}
+    it('returns the modal state', () => {
+      expect(mapStateToProps(state)).toEqual(expected)
+    });
+});

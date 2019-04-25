@@ -12,25 +12,25 @@ firebase.initializeApp({
   authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN,
 });
 
-export const TwitterLogin = ({ twitterLogin, isRegister }) => (
+export const TwitterLogin = ({ twitterLogin, component }) => (
 
   <Button onClick={twitterLogin} variant="outline-secondary" className="btn-auth social-button twitter" block>
     <i className="fab fa-twitter" />
     {' '}
-    {isRegister ? 'Register ' : 'Login '}
+    {component === 'register' ? 'Register ' : 'Login '}
      with Twitter
   </Button>
 );
 
 TwitterLogin.propTypes = {
   twitterLogin: PropTypes.func.isRequired,
-  isRegister: PropTypes.bool.isRequired,
+  component: PropTypes.string.isRequired,
 };
 
 export const mapStateToProps = (state) => {
-  const { isRegister } = state.modalState;
+  const { component } = state.modalState;
   return {
-    isRegister,
+    component,
   };
 };
 

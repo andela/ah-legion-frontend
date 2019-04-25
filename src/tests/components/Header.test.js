@@ -30,4 +30,10 @@ describe('Header', () => {
     const profileDropdown = component.find('.user-profile-container');
     expect(profileDropdown).toBeDefined();
   });
+
+  it('calls the dispath logout method ', () => {
+    const spy = jest.spyOn(component.instance(), 'dispatchLogout');
+    component.instance().dispatchLogout();
+    expect(spy).toHaveBeenCalled();
+  });
 });

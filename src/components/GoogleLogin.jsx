@@ -4,23 +4,23 @@ import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { googleLoginAction } from '../store/actions/authActions/socialLoginAction';
 
-export const GoogleLogin = ({ googleLogin, isRegister }) => (
+export const GoogleLogin = ({ googleLogin, component }) => (
   <Button id="googleBtn" onClick={googleLogin} variant="outline-secondary" className="btn-auth social-button google" block>
     <i className="fab fa-google" />
-    {isRegister ? 'Register ' : 'Login '}
+    {component === 'register' ? 'Register ' : 'Login '}
     with Google
   </Button>
 );
 
 GoogleLogin.propTypes = {
   googleLogin: PropTypes.func.isRequired,
-  isRegister: PropTypes.bool.isRequired,
+  component: PropTypes.string.isRequired,
 };
 
 export const mapStateToProps = (state) => {
-  const { isRegister } = state.modalState;
+  const { component } = state.modalState;
   return {
-    isRegister,
+    component,
   };
 };
 

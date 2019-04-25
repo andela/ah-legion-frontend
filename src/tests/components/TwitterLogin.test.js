@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { TwitterLogin, mapDispatchToProps } from '../../components/TwitterLogin';
+import { TwitterLogin, mapDispatchToProps, mapStateToProps } from '../../components/TwitterLogin';
 
 
 describe('Twitter Component', () => {
@@ -11,7 +11,7 @@ describe('Twitter Component', () => {
   })
 
   it("Should render with no errors", () => {
-    const component = shallow(<TwitterLogin isRegister={true} />);
+    const component = shallow(<TwitterLogin component='register' />);
     expect(component.find('button')).toBeDefined();
     expect(component.length).toBe(1);
   })
@@ -32,5 +32,13 @@ describe('MapDispatchToProps', () => {
   it('should dispatch twitterLogin', () => {
     mapDispatchToProps(dispatch).twitterLogin();
     expect(dispatch).toHaveBeenCalled();
+  });
+});
+
+describe('MapStateToProps', () => { 
+  const state = {modalState: { component: 'register', modalShow: true }}
+  const expected = { component: 'register'}
+  it('returns the modal state', () => {
+    expect(mapStateToProps(state)).toEqual(expected)
   });
 });
