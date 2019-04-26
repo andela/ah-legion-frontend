@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import unixTimeToDate from '../utils/dateFormatter';
 import extractImageFromBody from '../utils/imageExtractor';
+import BookmarkButton from './BookmarkButton';
 
 const AllArticles = ({ articles }) => (articles ? (
   articles.map(article => (
@@ -21,11 +22,14 @@ const AllArticles = ({ articles }) => (articles ? (
         <br />
         <span className="author">{article.author.username}</span>
         <br />
-        <span className="meta">
-          {unixTimeToDate(article.created_at)}
-&nbsp;.&nbsp;
-          {article.reading_time}
-&nbsp;read
+        <span className="preview-footer">
+          <span className="meta">
+            {unixTimeToDate(article.created_at)}
+            &nbsp;.&nbsp;
+            {article.reading_time}
+          &nbsp;read&nbsp;
+          </span>
+          <BookmarkButton article={article} />
         </span>
       </div>
     </div>

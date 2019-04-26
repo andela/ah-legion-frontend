@@ -916,3 +916,26 @@ div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
     background: #b7cfe0;
     cursor: pointer;
 }
+
+.bookmark {
+  color: #792525;
+  cursor: pointer;
+  font-size: 20px;
+  float: right;
+  margin-right: 5.5%;
+  justify-self: end;
+}
+
+.bookmark:focus {
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.preview-footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}

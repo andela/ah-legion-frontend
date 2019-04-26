@@ -7,6 +7,7 @@ import AuthenticationModal from './AuthenticationModal';
 import store from '../store/store';
 import { LOGIN, REGISTER, LOGOUT } from '../store/actions/actionTypes';
 import AlertModal from './AlertModal';
+import { getUserBookmarks } from '../store/actions/bookmarkActions';
 
 export class Header extends React.Component {
   dispatchLogin = () => {
@@ -23,8 +24,9 @@ export class Header extends React.Component {
   }
 
   render() {
-    const { loginUser } = this.props;
+    const { loginUser, GetUserBookmarks } = this.props;
     const authenticated = loginUser.loggedIn;
+    GetUserBookmarks();
     return (
       <Navbar expand="lg" className="navbar-custom">
         <NavLink exact to="/" className="brand">
@@ -79,12 +81,18 @@ export class Header extends React.Component {
 
 Header.propTypes = {
   loginUser: PropTypes.bool.isRequired,
+  GetUserBookmarks: PropTypes.func.isRequired,
 };
 
+export function mapDispatchToProps(dispatch) {
+  return {
+    GetUserBookmarks: () => dispatch(getUserBookmarks()),
+  };
+}
 
 export const mapStateToProps = (state) => {
   const { loginUser } = state;
   return { loginUser };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

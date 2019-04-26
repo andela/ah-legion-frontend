@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const { REACT_APP_BASE_URL } = process.env;
 
-export const axiosConfig = axios.create({
+const axiosConfig = axios.create({
   baseURL: REACT_APP_BASE_URL,
   headers: {
     'content-type': 'application/json',

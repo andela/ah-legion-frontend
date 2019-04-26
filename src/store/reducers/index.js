@@ -7,6 +7,7 @@ import loginReducer from './LoginReducer';
 import profileReducer from './profileReducer';
 import personalArticlesReducer from './personalArticlesReducer';
 import passwordResetReducer from './passwordResetReducer';
+import bookmarkReducer from './bookmarkReducer';
 
 const rootReducer = combineReducers({
   modalState: modalReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   authorArticles: articlesReducer,
   editedArticle: articlesReducer,
   publishedArticle: articlesReducer,
+  bookmarkState: bookmarkReducer,
 });
 
 export default rootReducer;
