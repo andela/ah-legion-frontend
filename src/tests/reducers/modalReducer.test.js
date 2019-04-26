@@ -79,4 +79,17 @@ it('should change state on action type password reset', () => {
     }
   )
 })
+it('should change state on action type edit comment', () => {
+  expect(
+    modalReducer({}, {
+      type: types.EDIT_COMMENT
+    })
+  ).toEqual(
+    {
+      editData: undefined,
+      component: 'edit-comment',
+      modalShow: true,
+    }
+  )
+})
 });

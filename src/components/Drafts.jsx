@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import { ToastContainer } from 'react-toastify';
@@ -8,7 +9,8 @@ const Drafts = ({ authorArticles }) => {
   const postsPublished = authorArticles.filter(post => post.published === true)
     .map(authorArticle => (
       <div key={authorArticle.id} className="single-article">
-        <h3>{authorArticle.title}</h3>
+        <Link to={'/article/'.concat(authorArticle.slug)} className="title-link"><strong>{authorArticle.title}</strong></Link>
+        <br />
         <span className="description">{authorArticle.description}</span>
 
         <br />

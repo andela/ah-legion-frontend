@@ -10,9 +10,7 @@ const ArticlesByCriteria = ({ articles, start, end }) => (articles ? (
       <img src={extractImageFromBody(article.body)} alt="" />
       <h3>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <Link className="title-link">
-          {article.title}
-        </Link>
+        <Link to={'article/'.concat(article.slug)} className="title-link">{article.title}</Link>
       </h3>
       <span className="author">{article.author.username}</span>
       <br />

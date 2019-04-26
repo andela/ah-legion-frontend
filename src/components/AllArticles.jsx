@@ -15,7 +15,7 @@ const AllArticles = ({ articles }) => (articles ? (
         />
 
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <h3><Link a href="#" className="title-link">{article.title}</Link></h3>
+        <h3><Link to={'article/'.concat(article.slug)} className="title-link">{article.title}</Link></h3>
 
         <span className="description">{article.description}</span>
         <br />

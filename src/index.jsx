@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import style from 'bootstrap/dist/css/bootstrap.css';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import 'react-toastify/dist/ReactToastify.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss';
 import './css/App.css';
 import Routes from './routes';

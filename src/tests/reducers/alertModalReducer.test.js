@@ -5,9 +5,10 @@ describe(' alert modal reducer', () => {
   it('should return the initial state', () => {
     expect(alertModalReducer(undefined, {})).toEqual(
       {
-        showAlert: false,
-        message: '',
-        colorClass: '',
+        "colorClass": "", 
+        "isDeleteComment": false,
+        "message": "",
+        "showAlert": false
       }
     )
   })
@@ -27,6 +28,25 @@ describe(' alert modal reducer', () => {
         showAlert: true,
         message: 'message',
         colorClass: 'alert-success',
+      }
+    )
+  })
+  it('should change state on action type delete comment', () => {
+    expect(
+      alertModalReducer({}, {
+        type: types.DELETE_COMMENT,
+        payload: {
+          colorClass: 'alert-danger',
+        }
+      })
+    ).toEqual(
+      {
+        colorClass: 'alert-danger',
+        deleteData: {
+          colorClass: 'alert-danger',
+        },
+        isDeleteComment: true,
+        showAlert: true
       }
     )
   })
