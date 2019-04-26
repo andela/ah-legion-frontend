@@ -1,41 +1,50 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAllArticlesByAuthor } from '../store/actions/articles';
+import { fetchAllArticlesByAuthor, deleteAnArticle } from '../store/actions/articles';
 import Drafts from '../components/Drafts';
 
 export class DraftsView extends Component {
   componentWillMount() {
-    const { fetch } = this.props;
-    fetch();
+    const { fetchArticlesByAuthor } = this.props;
+    fetchArticlesByAuthor();
   }
 
-  render() {
-    const { authorArticles } = this.props;
-    return <Drafts authorArticles={authorArticles.authorArticles} />;
-  }
+onDelete = (slug) => {
+  const { deleteArticle } = this.props;
+  deleteArticle(slug);
+}
+
+render() {
+  const { authorArticles } = this.props;
+  return <Drafts authorArticles={authorArticles.authorArticles} onDelete={this.onDelete} />;
+}
 }
 
 export const mapStateToProps = (state) => {
-  const { authorArticles } = state;
-  return { authorArticles };
+  const { authorArticles, deletedArticle } = state;
+  return { authorArticles, deletedArticle };
 };
-
 export const mapDispatchToProps = dispatch => ({
-  fetch: () => dispatch(fetchAllArticlesByAuthor()),
+  fetchArticlesByAuthor: () => dispatch(fetchAllArticlesByAuthor()),
+  deleteArticle: slug => dispatch(deleteAnArticle(slug)),
 });
+
 DraftsView.propTypes = {
-  fetch: PropTypes.func,
-  authorArticles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number,
-    PropTypes.string, PropTypes.array])),
+  fetchArticlesByAuthor: PropTypes.func,
+  deleteArticle: PropTypes.func,
+  authorArticles: PropTypes.objectOf(PropTypes.oneOfType(
+    [PropTypes.array, PropTypes.object, PropTypes.number, PropTypes.string],
+  )),
 };
 
 DraftsView.defaultProps = {
-  fetch: () => {},
+  deleteArticle: () => {},
+  fetchArticlesByAuthor: () => {},
   authorArticles: [],
 };
 
 export default connect(
   mapStateToProps,
-  fetchAllArticlesByAuthor(),
+  mapDispatchToProps,
 )(DraftsView);

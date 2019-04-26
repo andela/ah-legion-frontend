@@ -11,9 +11,17 @@ import {
   EDIT_ARTICLE_FAIL,
   PUBLISH_ARTICLE,
   PUBLISH_ARTICLE_FAIL,
+  ONE_ARTICLE,
+  ONE_ARTICLE_FAIL,
+  DELETE_ARTICLE,
+  DELETE_ARTICLE_FAIL,
+  LOADING,
 } from './actionTypes';
 
-
+export const Loading = payload => ({
+  type: LOADING,
+  payload,
+});
 export const fetchArticles = articles => ({
   type: FETCH_ALL_ARTICLES,
   articles,
@@ -63,6 +71,25 @@ export const publishArticleFail = error => ({
   type: PUBLISH_ARTICLE_FAIL,
   error,
 });
+export const fetchOneArticle = oneArticle => ({
+  type: ONE_ARTICLE,
+  oneArticle,
+});
+
+export const fetchOneArticleFail = error => ({
+  type: ONE_ARTICLE_FAIL,
+  error,
+});
+
+export const deleteArticle = deletedArticle => ({
+  type: DELETE_ARTICLE,
+  deletedArticle,
+});
+
+export const deleteArticleFail = error => ({
+  type: DELETE_ARTICLE_FAIL,
+  error,
+});
 export const fetchAllArticles = () => dispatch => axiosConfig
   .request({
     method: 'get',
@@ -109,6 +136,7 @@ export const editAnArticle = (editArticleData, slug) => dispatch => axiosConfigA
   })
   .then((res) => {
     dispatch(editArticle(res.data.Article));
+    dispatch(Loading({ isLoading: false }));
   })
   .catch((error) => {
     dispatch(editArticleFail(error));
@@ -124,4 +152,29 @@ export const publishAnArticle = slug => dispatch => axiosConfigAuth
   })
   .catch((error) => {
     dispatch(publishArticleFail(error));
+  });
+
+export const fetchAnArticle = slug => dispatch => axiosConfig
+  .request({
+    method: 'get',
+    url: `articles/${slug}/`,
+  })
+  .then((res) => {
+    dispatch(fetchOneArticle(res.data.Article));
+  })
+  .catch((error) => {
+    dispatch(fetchOneArticleFail(error));
+  });
+
+export const deleteAnArticle = slug => dispatch => axiosConfigAuth
+  .request({
+    method: 'delete',
+    url: `articles/${slug}/edit`,
+  })
+  .then((res) => {
+    dispatch(deleteArticle(res.data.Articles));
+    toast.success('Árticle deleted successifully');
+  })
+  .catch((error) => {
+    dispatch(deleteArticleFail(error));
   });

@@ -1,15 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { Tabs, Tab } from 'react-bootstrap-tabs';
 import { ToastContainer } from 'react-toastify';
 
-const Drafts = ({ authorArticles }) => {
+const Drafts = ({ authorArticles, onDelete }) => {
   const postsPublished = authorArticles.filter(post => post.published === true)
     .map(authorArticle => (
       <div key={authorArticle.id} className="single-article">
-        <h3>{authorArticle.title}</h3>
+        <h3><Link to={`/article/${authorArticle.slug}/edit`} className="title-link">{authorArticle.title}</Link></h3>
         <span className="description">{authorArticle.description}</span>
+        <button
+          className="delete"
+          type="button"
+          onClick={() => { onDelete(authorArticle.slug); }}
+        >
+delete
+        </button>
+        <span className="description">{authorArticle.body}</span>
 
         <br />
         <hr />
@@ -20,6 +29,13 @@ const Drafts = ({ authorArticles }) => {
     <div key={authorArticle.id} className="single-article">
       <h3>{authorArticle.title}</h3>
       <span className="description">{authorArticle.description}</span>
+      <button
+        className="delete"
+        type="button"
+        onClick={() => { onDelete(authorArticle.slug); }}
+      >
+delete
+      </button>
 
       <br />
       <hr />
@@ -54,10 +70,12 @@ const Drafts = ({ authorArticles }) => {
   );
 };
 Drafts.propTypes = {
+  onDelete: PropTypes.func,
   authorArticles: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number,
     PropTypes.string, PropTypes.array])),
 };
 Drafts.defaultProps = {
+  onDelete: () => {},
   authorArticles: [],
 };
 export default Drafts;

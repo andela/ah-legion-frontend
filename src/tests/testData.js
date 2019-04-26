@@ -26,6 +26,8 @@ export const article = {
   title: 'Andela TIA',
   reading_time: '1 minutes',
   description: 'Ever wonder how?',
+  body: '<p>Ever wonder how?</p>',
+  activated: true,
   created_at: '2019-04-09T20:56:04.410399+03:00',
 };
 

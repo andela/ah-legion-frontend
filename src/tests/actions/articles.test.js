@@ -251,3 +251,15 @@ describe('CreateArticleView map props to state', () => {
     });
   });
 });
+
+describe('CreateArticleView map props to state', () => {
+  const editedArticle = article;
+  const publishedArticle = article;
+  it('should return the initial state', () => {
+    expect(mapStateToProps({
+      article, editedArticle, publishedArticle,
+    })).toEqual({
+      article, editedArticle, publishedArticle,
+    });
+  });
+});

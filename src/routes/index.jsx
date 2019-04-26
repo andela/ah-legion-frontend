@@ -7,6 +7,7 @@ import HomeView from '../containers/HomeView';
 import UserProfile from '../components/user/UserProfile';
 import ResetPassword from '../components/ResetPassword';
 import CreateArticleView from '../containers/CreateArticleView';
+import UpdateArticleView from '../containers/UpdateArticleView';
 import DraftsView from '../containers/DraftsView';
 import Login from '../components/Login';
 
@@ -20,6 +21,7 @@ const Routes = () => (
       <Route path="/login" component={Login} />
       <ProtectedRoute path="/article/create" component={CreateArticleView} />
       <ProtectedRoute path="/articles/drafts" component={DraftsView} />
+      <Route path="/article/:slug/edit" component={UpdateArticleView} />
       <Footer />
     </div>
   </BrowserRouter>
