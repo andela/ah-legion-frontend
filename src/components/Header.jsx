@@ -45,6 +45,9 @@ export class Header extends React.Component {
                   <Link to="/articles/drafts" className="nav-dropdown">Drafts</Link>
                   <hr />
                   <Link to="/profile" className="nav-dropdown">Profile</Link>
+                  <hr />
+                  <span className="logout nav-dropdown" onClick={this.dispatchLogout}>Logout</span>
+
 
                 </Popover>
 )}

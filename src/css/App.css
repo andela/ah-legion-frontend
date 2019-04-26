@@ -855,6 +855,9 @@ color: #000000;
   color:#333;
   text-decoration: none;
 }
+.logout:hover {
+  cursor: pointer;
+}
 
   /* Styles for React Tags*/
 div.ReactTags__tags {
