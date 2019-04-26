@@ -7,7 +7,7 @@ import ArticlesByCriteria from '../../components/ArticlesByCriteria';
 import AllArticles from '../../components/AllArticles';
 import Drafts from '../../components/Drafts';
 import CreateArticle from '../../components/CreateArticle';
-import { mapStateToProps } from '../../containers/DraftsView';
+import { mapStateToProps, mapDispatchToProps as draftDispatch } from '../../containers/DraftsView';
 import { mapDispatchToProps } from '../../containers/CreateArticleView';
 
 describe('Home', () => {
@@ -25,6 +25,14 @@ describe('DraftView MapStateToProps', () => {
     expect(mapStateToProps({ authorArticles })).toEqual({
       authorArticles,
     });
+  });
+});
+describe('DraftView MapDispatchToProps', () => {
+  const dispatch = jest.fn();
+  it('fetch articles function is called', () => {
+    draftDispatch(dispatch).fetchArticlesByAuthor();
+    draftDispatch(dispatch).deleteArticle('slug');
+    expect(dispatch).toHaveBeenCalled();
   });
 });
 describe('CreateArticleView MapDispatchToProps', () => {

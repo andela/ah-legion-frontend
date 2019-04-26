@@ -26,7 +26,34 @@ const CreateArticle = ({ ...props }) => {
     handleDrag,
     onPublish,
     show,
+    title,
+    activated,
+    description,
+    editorState,
+    onSavePublish,
   } = props;
+  const publishButton = () => (
+    activated ? (
+      <Button
+        variant="primary"
+        className="btn-publish"
+        onClick={onSavePublish}
+      >
+    Save and Publish
+
+      </Button>
+    ) : (
+
+      <Button
+        variant="primary"
+        className="btn-publish"
+        onClick={onPublish}
+      >
+    Publish Article
+
+      </Button>
+    )
+  );
   return (
     <Container>
       <Row>
@@ -50,17 +77,11 @@ const CreateArticle = ({ ...props }) => {
                   className="btn-publish"
                   onClick={onPublish}
                 >
-                Publish Article
+                Publish
                 </Button>
               </OverlayTrigger>
             ) : (
-              <Button
-                variant="primary"
-                className="btn-publish"
-                onClick={onPublish}
-              >
-              Publish Article
-              </Button>
+              publishButton()
             )}
             <Form onSubmit={onSubmit}>
               <Form.Group>
@@ -69,6 +90,7 @@ const CreateArticle = ({ ...props }) => {
                   rows="1"
                   placeholder="Title Here"
                   id="title"
+                  defaultValue={title}
                   className="draft-title-input"
                   onBlur={handleChange}
                 />
@@ -79,6 +101,7 @@ const CreateArticle = ({ ...props }) => {
                   rows="2"
                   placeholder="Description Here"
                   id="description"
+                  defaultValue={description}
                   className="draft-text-area"
                   onChange={handleChange}
                 />
@@ -91,6 +114,7 @@ const CreateArticle = ({ ...props }) => {
                   <Editor
                     wrapperClassName="demo-wrapper"
                     editorClassName="demo-editor"
+                    editorState={editorState}
                     toolbar={{
                       options: ['inline', 'image'],
                       inline: {

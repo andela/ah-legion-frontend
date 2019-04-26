@@ -7,6 +7,7 @@ import {
   createAnArticle,
   editAnArticle,
   publishAnArticle,
+  Loading,
 } from '../store/actions/articles';
 import CreateArticle from '../components/CreateArticle';
 
@@ -25,12 +26,24 @@ export class CreateArticleView extends Component {
     };
   }
 
+loading = () => {
+  const { isLoading } = this.props;
+  return (
+    isLoading
+      ? this.setState({
+        draftStatus: 'saving...',
+      })
+      : this.setState({
+        draftStatus: 'saved',
+      })
+  );
+};
+
   onEditorStateChange = (editorState) => {
     const { count } = this.state;
     this.setState(
       {
         count: count + 1,
-        draftStatus: 'saving...',
         editorState,
       },
       () => {
@@ -55,7 +68,7 @@ export class CreateArticleView extends Component {
     const {
       title, description, tags, count, editorState,
     } = this.state;
-    const { article, create, edit } = this.props;
+    const { article, create, edit, loading } = this.props;
     const articleSlug = article.article.slug;
     const body = draftToHtml(convertToRaw(editorState.getCurrentContent()));
     const tag = tags.map(item => item.text);
@@ -72,9 +85,6 @@ export class CreateArticleView extends Component {
       create(articleData);
     } else if (count > 2) {
       edit(articleData, articleSlug);
-      this.setState({
-        draftStatus: 'saved',
-      });
     }
   };
 
@@ -117,7 +127,7 @@ export class CreateArticleView extends Component {
 
   render() {
     const {
-      draftStatus, tags, tagsInputValue, show,
+      draftStatus, tags, tagsInputValue, show, editorState,
     } = this.state;
     return (
       <CreateArticle
@@ -137,6 +147,7 @@ export class CreateArticleView extends Component {
         handleDrag={this.handleDrag}
         onPublish={this.onPublish}
         show={show}
+        editorState={editorState}
       />
     );
   }
@@ -144,12 +155,13 @@ export class CreateArticleView extends Component {
 
 export const mapStateToProps = (state) => {
   const {
-    article, editedArticle, publishedArticle,
+    article, editedArticle, publishedArticle, isLoading,
   } = state;
   return {
     article,
     editedArticle,
     publishedArticle,
+    isLoading,
   };
 };
 
@@ -157,6 +169,7 @@ export const mapDispatchToProps = dispatch => ({
   create: articleData => dispatch(createAnArticle(articleData)),
   edit: (articleData, slug) => dispatch(editAnArticle(articleData, slug)),
   publish: slug => dispatch(publishAnArticle(slug)),
+  loading: payload => dispatch(Loading(payload)),
 });
 
 CreateArticleView.propTypes = {
