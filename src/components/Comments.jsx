@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { Input } from 'reactstrap';
 import moment from 'moment';
 import store from '../store/store';
-import { EDIT_COMMENT, DELETE_COMMENT, FINISH_DELETE, FINISH_EDIT } from '../store/actions/actionTypes';
-import { createAComment, createAReply } from '../store/actions/commentsActions';
+import { EDIT_COMMENT, DELETE_COMMENT } from '../store/actions/actionTypes';
+import { createAComment, createAReply, fetchArticleComments } from '../store/actions/commentsActions';
 
 export class Comments extends Component {
   constructor(props) {
@@ -17,8 +17,6 @@ export class Comments extends Component {
       thisComment: '',
       thisReply: '',
       replyId: '',
-      comments: '',
-      slug: '',
       isLoggedIn: false,
       newComment: {},
       newReply: {},
@@ -30,90 +28,11 @@ export class Comments extends Component {
     this.dispatchDeleteComment = this.dispatchDeleteComment.bind(this);
   }
 
-  componentDidMount() {
-    const { data } = this.props;
-    const { comments, slug } = data;
-    this.setState({
-      comments,
-      slug,
-    });
-  }
-
-  componentWillReceiveProps(newProps) {
-    const { comments } = this.state;
-    const {
-      data,
-      changedCommentData,
-      changedComment,
-    } = newProps;
-    const { state } = this;
-    const incomingComment = data.newComment;
-    const incomingReply = data.newReply;
-    const existingComment = state.newComment;
-    const existingReply = state.newReply;
-    if ((changedCommentData) && (changedComment)) {
-      if (newProps.changedComment) {
-        for (let count = 0; count < comments.length; count += 1) {
-          if (comments[count].id === changedCommentData.id) {
-            comments.splice(count, 1, changedCommentData);
-            this.setState({
-              comments,
-            });
-            store.dispatch({ type: FINISH_EDIT });
-            break;
-          }
-        }
-      }
-    }
-    if (data.deletedComment) {
-      for (let count = 0; count < comments.length; count += 1) {
-        if (comments[count].id === data.deletedCommentId) {
-          comments.splice(count, 1);
-          this.setState({
-            comments,
-          });
-          store.dispatch({ type: FINISH_DELETE });
-          break;
-        }
-      }
-    }
-
-    this.setState({
-      isLoggedIn: newProps.isLoggedIn,
-    });
-    if (incomingComment) {
-      if ((existingComment !== incomingComment)
-    && (Object.keys(incomingComment).length !== 0)) {
-        comments.unshift(incomingComment.Comment);
-        this.setState({
-          comments,
-          newComment: incomingComment,
-        });
-      }
-    }
-    if (incomingReply) {
-      if ((existingReply !== incomingReply)
-    && (Object.keys(incomingReply).length !== 0)) {
-        const replyInstance = data.newReply.Comment;
-        const commentId = parseInt(state.replyId, 10);
-        for (let count = 0; count < comments.length; count += 1) {
-          if (comments[count].id === commentId) {
-            comments[count].comments.unshift(replyInstance);
-            break;
-          }
-        }
-        this.setState({
-          comments,
-          newReply: incomingReply,
-        });
-      }
-    }
-  }
-
   handleSubmitComment = (event) => {
     event.preventDefault();
-    const { thisComment, slug } = this.state;
-    const { createComment } = this.props;
+    const { thisComment } = this.state;
+    const { createComment, data } = this.props;
+    const { slug } = data;
     createComment(slug, thisComment);
     this.setState({
       thisComment: '',
@@ -122,7 +41,8 @@ export class Comments extends Component {
 
   dispatchEditComment = (event) => {
     event.preventDefault();
-    const { slug } = this.state;
+    const { data } = this.props;
+    const { slug } = data;
     if (event.target.name) {
       const splitId = (event.target.name).split('-');
       const thisId = parseInt(splitId[1], 10);
@@ -136,7 +56,8 @@ export class Comments extends Component {
 
   dispatchDeleteComment = (event) => {
     event.preventDefault();
-    const { slug } = this.state;
+    const { data } = this.props;
+    const { slug } = data;
     const splitId = (event.target.name).split('-');
     const thisId = parseInt(splitId[1], 10);
     const payload = {
@@ -149,8 +70,8 @@ export class Comments extends Component {
   handleSubmitReply = (event) => {
     event.preventDefault();
     const { state } = this;
-    const { slug } = state;
-    const { createReply } = this.props;
+    const { createReply, data } = this.props;
+    const { slug } = data;
     const commentId = event.target.name;
     const theReply = state[commentId];
     createReply(slug, commentId, theReply);
@@ -165,7 +86,8 @@ export class Comments extends Component {
   }
 
   render() {
-    const { comments, thisComment } = this.state;
+    const { thisComment } = this.state;
+    const { comments } = this.props;
     const { state } = this;
     const { isLoggedIn } = this.props;
     let username = false;
@@ -386,10 +308,13 @@ export const mapDispatchToProps = dispatch => ({
   createReply: (slug, pk, data) => {
     dispatch(createAReply(slug, pk, data));
   },
+  fetchTheArticleComments: (slug) => {
+    dispatch(fetchArticleComments(slug));
+  },
 });
 
 export const mapStateToProps = state => ({
-  comments: state.getCommentsReducer,
+  comments: state.getCommentsReducer.comments,
   newComment: state.getCommentsReducer.thisComment,
   isLoggedIn: state.loginUser.loggedIn,
   changedComment: state.getCommentsReducer.changedComment,
@@ -397,6 +322,7 @@ export const mapStateToProps = state => ({
 });
 
 Comments.propTypes = {
+  comments: PropTypes.shape({}).isRequired,
   data: PropTypes.shape({}),
   isLoggedIn: PropTypes.func.isRequired,
   createComment: PropTypes.func.isRequired,
