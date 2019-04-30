@@ -1030,6 +1030,20 @@ div.ReactTags__selected a.ReactTags__remove {
     margin-left: 5px;
     cursor: pointer;
 }
+
+.fa-ellipsis-h{
+  float: right;
+  font-size: 40px;
+}
+.report-article{
+  cursor: pointer;
+}
+
+.line-spacing{
+  display: block;
+  margin-bottom: 0.5em;
+}
+
 /* Styles for suggestions */
 div.ReactTags__suggestions {
     position: absolute;
@@ -1040,6 +1054,7 @@ div.ReactTags__suggestions ul {
     background: white;
     width: 200px;
 }
+
 div.ReactTags__suggestions li {
     border-bottom: 1px solid #ddd;
     padding: 5px 10px;
@@ -1054,3 +1069,4 @@ div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
     background: #b7cfe0;
     cursor: pointer;
 }
+

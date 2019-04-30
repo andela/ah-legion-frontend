@@ -31,6 +31,10 @@ describe('AuthenticationModal', () => {
     const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'edit-comment'} dispatch={jest.fn()} />);
     expect(component.find('h3').text()).toEqual("Edit Comment")
   });
+  it('renders authentication modal in Report article mode', () => {
+    const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'report-article'} dispatch={jest.fn()} />);
+    expect(component.find('h3').text()).toEqual("Report Article")
+  });
 
   it('renders authentication modal in initiate reset mode', () => {
     const component = shallow(<ConnectedAuthenticationModal modalShow={true} component={'initiate-reset'} dispatch={jest.fn()} />);

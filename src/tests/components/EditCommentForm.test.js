@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { oneArticle, sampleComments } from '../testData';
-import { EditCommentForm } from '../../components/EditCommentForm';
+import { EditCommentForm, mapDispatchToProps, mapStateToProps } from '../../components/EditCommentForm';
 
 const props = {
   isLoading: true,
@@ -54,6 +54,25 @@ describe('Edit comment form tests', () => {
     wrapperInstance.setState(state);
     wrapperInstance.handleChange(event);
     expect(wrapperInstance.state.replyId).toEqual("article-34")
+  });
+});
+describe('MapDispatchToProps', () => { 
+  const dispatch = jest.fn()
+  it('should dispatch editComment', () => {
+    mapDispatchToProps(dispatch).editComment();
+    expect(dispatch).toHaveBeenCalled();
+  });
+});
+describe('MapStateToProps', () => { 
+  const state = {
+    modalState: {
+      editData: 'bb',
+      isEditComment: false,
+    }
+  }
+  const expected = {editData: "bb", isEditComment: false}
+  it('returns the modal state', () => {
+    expect(mapStateToProps(state)).toEqual(expected)
   });
 });
 
