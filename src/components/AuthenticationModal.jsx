@@ -5,6 +5,7 @@ import { Container, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import RegisterForm from './RegisterForm';
 import EditCommentForm from './EditCommentForm';
+import ReportArticleForm from './ReportArticleForm';
 import Login from './Login';
 import SocialAccount from './SocialAccount';
 import ShowModal from '../store/actions/changeFormAction';
@@ -43,6 +44,10 @@ export class ConnectedAuthenticationModal extends React.Component {
       case ('edit-comment'):
         CurrentComponent = EditCommentForm;
         headerMessage = 'Edit Comment';
+        break;
+      case ('report-article'):
+        CurrentComponent = ReportArticleForm;
+        headerMessage = 'Report Article';
         break;
       default:
         CurrentComponent = Login;

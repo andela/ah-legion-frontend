@@ -1,4 +1,4 @@
-import { SHOW_MODAL, REGISTER, LOGIN, INITIATE_RESET, PASSWORD_RESET, EDIT_COMMENT } from '../actions/actionTypes';
+import { SHOW_MODAL, REGISTER, LOGIN, INITIATE_RESET, PASSWORD_RESET, EDIT_COMMENT, REPORT_ARTICLE } from '../actions/actionTypes';
 
 const initialState = {
   component: '',
@@ -43,6 +43,13 @@ function modalReducer(state = initialState, action) {
         ...state,
         editData: action.payload,
         component: 'edit-comment',
+        modalShow: true,
+      });
+    case (REPORT_ARTICLE):
+      return ({
+        ...state,
+        slug: action.slug,
+        component: 'report-article',
         modalShow: true,
       });
     default:

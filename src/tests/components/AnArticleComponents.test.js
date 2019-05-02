@@ -9,8 +9,20 @@ const props = {
   };
 
 describe('AnArticle tests', () => {
+  const component = shallow(<AnArticle data={props}/>);
+  const wrapperInstance = component.instance();
   it('confirm that an article is being rendered', () => {
-    const component = shallow(<AnArticle data={props}/>);
     expect(component.find('div')).toBeDefined();
+  });
+  it('Should dispatch the dispatchReportArticle', () => {
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        dispatchReportArticle: jest.fn(),
+        name: 'reportArticle'
+
+      },
+    };
+    wrapperInstance.dispatchReportArticle(event);
   });
 });

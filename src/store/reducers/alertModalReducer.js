@@ -1,6 +1,7 @@
 import {
   SHOW_ALERT,
   DELETE_COMMENT,
+  REPORTED_ARTICLE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -20,6 +21,13 @@ function alertModalReducer(state = initialState, action) {
         deleteData: action.payload,
         isDeleteComment: true,
         colorClass: 'alert-danger',
+        showAlert: true,
+      });
+    case (REPORTED_ARTICLE):
+      return ({
+        ...state,
+        message: 'The article has been reported succesfully.',
+        colorClass: 'alert-success',
         showAlert: true,
       });
     default:

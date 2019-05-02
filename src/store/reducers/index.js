@@ -8,9 +8,11 @@ import profileReducer from './profileReducer';
 import personalArticlesReducer from './personalArticlesReducer';
 import passwordResetReducer from './passwordResetReducer';
 import commentReducers from './commentReducers';
+import reportArticleReducer from './reportArticleReducer';
 
 const rootReducer = combineReducers({
   modalState: modalReducer,
+  reportArticleState: reportArticleReducer,
   registerState: registerReducer,
   alertModalState: alertModalReducer,
   profile: profileReducer,
