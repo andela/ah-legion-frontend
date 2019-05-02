@@ -17,23 +17,22 @@ describe('comments reducers tests', () => {
   it('should return the initial state', () => {
     expect(commentReducers(undefined, {})).toEqual(
       {
-        author: {},
-        changedComment: false, 
-        "changedCommentData": "", 
-        "commentCreated": false, 
-        "comments": [], 
-        "createCommentError": false, 
-        "creatingComment": true, 
-        "creatingReply": true, 
-        "deletedComment": false, 
-        "deletedCommentId": false, 
+        "author": {},
+        "changedComment": false,
+        "changedCommentData": "",
+        "commentCreated": false,
+        "comments": [],
+        "createCommentError": false,
+        "creatingComment": true,
+        "creatingReply": true,
+        "deletedComment": false,
+        "deletedCommentId": false,
         "errors": null,
-        "isFetchingArticle": true, 
-        "isFetchingComments": true, 
-        "isLoggedIn": false, 
-        "newComment": {}, 
-        "newReply": {}, 
-        "replyCreated": false, 
+        "isFetchingArticle": true,
+        "isFetchingComments": true,
+        "isLoggedIn": false,
+        "newReply": {},
+        "replyCreated": false,
         "slug": ""
       },
     );
@@ -124,7 +123,7 @@ describe('comments reducers tests', () => {
         payload: sampleComments[0]
       })
     ).toEqual(
-        {commentCreated: true, newComment: sampleComments[0]}
+        {commentCreated: true}
     )
   })
   it('should change state on action type CREATE_REPLY_SUCCESS', () => {

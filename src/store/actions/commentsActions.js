@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import axiosConfig, { axiosConfigAuth } from '../../axiosConfig';
+import store from '../store';
 import {
   FETCH_AN_ARTICLE,
   FETCH_ARTICLE_COMMENTS,
@@ -27,6 +28,9 @@ export const fetchAnArticle = slug => dispatch => axiosConfig.request({
   })
   .catch((error) => {
     dispatch(getItem(FETCH_AN_ARTICLE_404, error));
+    toast.error(error, {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
   });
 
 export const fetchArticleComments = slug => dispatch => axiosConfig.request({
@@ -48,8 +52,9 @@ export const createAComment = (slug, data) => dispatch => axiosConfigAuth.reques
   url: `articles/${slug}/comments/`,
   data: { body: data },
 })
-  .then((response) => {
-    dispatch(getItem(CREATE_COMMENT_SUCCESS, response.data));
+  .then(() => {
+    dispatch({ type: CREATE_COMMENT_SUCCESS });
+    store.dispatch(fetchArticleComments(slug));
   })
   .catch((error) => {
     toast.error(error, {
@@ -63,8 +68,9 @@ export const createAReply = (slug, pk, data) => dispatch => axiosConfigAuth.requ
   url: `articles/${slug}/comments/${pk}/`,
   data: { body: data },
 })
-  .then((response) => {
-    dispatch(getItem(CREATE_REPLY_SUCCESS, response.data));
+  .then(() => {
+    dispatch(getItem(CREATE_REPLY_SUCCESS));
+    store.dispatch(fetchArticleComments(slug));
   })
   .catch((error) => {
     toast.error(error, {
@@ -77,8 +83,9 @@ export const editAComment = (slug, pk, data) => dispatch => axiosConfigAuth.requ
   url: `articles/${slug}/comments/${pk}/`,
   data: { body: data },
 })
-  .then((response) => {
-    dispatch(getItem(EDITED_COMMENT, response.data));
+  .then(() => {
+    dispatch(getItem(EDITED_COMMENT));
+    store.dispatch(fetchArticleComments(slug));
   })
   .catch((error) => {
     toast.error(error, {
@@ -93,7 +100,7 @@ export const deleteAComment = (slug, pk) => dispatch => axiosConfigAuth.request(
 })
   .then(() => {
     dispatch(getItem(DELETED_COMMENT, pk));
-    // dispatch(getItem())
+    store.dispatch(fetchArticleComments(slug));
   })
   .catch((error) => {
     toast.error(error, {

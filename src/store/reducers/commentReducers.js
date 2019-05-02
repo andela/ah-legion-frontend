@@ -28,7 +28,6 @@ const initialState = {
   errors: null,
   author: {},
   comments: [],
-  newComment: {},
   newReply: {},
 };
 
@@ -45,7 +44,6 @@ const commentsReducers = (state = initialState, action) => {
       return {
         ...state,
         commentCreated: true,
-        newComment: action.payload,
       };
     case LOGGED_IN:
       return {
@@ -62,7 +60,6 @@ const commentsReducers = (state = initialState, action) => {
       return {
         ...state,
         changedComment: true,
-        changedCommentData: action.payload,
       };
     case FINISH_DELETE:
       return {

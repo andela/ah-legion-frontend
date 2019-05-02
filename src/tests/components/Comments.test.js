@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { oneArticle, sampleComments } from '../testData';
-import { Comments } from '../../components/Comments';
+import { oneArticle, sampleComments, commentsProps } from '../testData';
+import { Comments, mapDispatchToProps, mapStateToProps } from '../../components/Comments';
 
 
 const props = {
@@ -19,8 +19,9 @@ const props = {
 
   const createComment =  jest.fn() 
 describe('Comments tests', () => {
-    const component = shallow(<Comments data={props}/>);
+    const component = shallow(<Comments data={props} {...props}/>);
     component.setProps({
+      comments: sampleComments,
       isLoggedIn: true,
       newComment:comment,
       deletedCommentId:sampleComments[0].id, 
@@ -33,7 +34,6 @@ describe('Comments tests', () => {
       },
     })
     const wrapperInstance = component.instance();
-    console.log(wrapperInstance);
     it('confirm that a comment component is mounted', () => {
       expect(component.find('.my-comments')).toHaveLength(1);
     });
@@ -83,6 +83,22 @@ describe('Comments tests', () => {
       wrapperInstance.dispatchDeleteComment(event);
       expect(wrapperInstance.state.replyId).toEqual("article-34")
     });
+    it('Should dispatch the handleChange', () => {
+      const event = {
+        preventDefault: jest.fn(),
+        target: {
+          handleChange: jest.fn(),
+          name: 'thisComment'
+        },
+      };
+      const state = {
+        replyId: 'thisComment',
+      };
+      const wrapperInstance = component.instance();
+      wrapperInstance.setState(state);
+      wrapperInstance.handleChange(event);
+      expect(wrapperInstance.state.replyId).toEqual("thisComment")
+      });
     const component1 = shallow(<Comments data={props} {...props}/>);
     it('Should dispatch the handleSubmitReply', () => {
       const event = {
@@ -103,8 +119,9 @@ describe('Comments tests', () => {
   });
 
   describe('Comments reply test', () => {
-    const component = shallow(<Comments data={props}/>);
+    const component = shallow(<Comments data={props} {...props}/>);
     component.setProps({
+      comments: sampleComments,
       isLoggedIn: true,
       newComment:comment,
       createComment:createComment, 
@@ -122,8 +139,9 @@ describe('Comments tests', () => {
     });
   });
   describe('Comments make a comment', () => {
-    const component = shallow(<Comments data={props}/>);
+    const component = shallow(<Comments data={props} {...props}/>);
     component.setProps({
+      comments: sampleComments,
       isLoggedIn: true,
       createComment:createComment, 
       changedComment:true,
@@ -139,3 +157,37 @@ describe('Comments tests', () => {
       expect(component.find('.my-comments')).toHaveLength(1);
     });
   });
+  describe('MapDispatchToProps', () => { 
+    const dispatch = jest.fn()
+    it('should dispatch createComment', () => {
+      mapDispatchToProps(dispatch).createComment();
+      expect(dispatch).toHaveBeenCalled();
+    });
+    it('should dispatch createReply', () => {
+      mapDispatchToProps(dispatch).createReply();
+      expect(dispatch).toHaveBeenCalled();
+    });
+    it('should dispatch fetchTheArticleComments', () => {
+      mapDispatchToProps(dispatch).fetchTheArticleComments();
+      expect(dispatch).toHaveBeenCalled();
+    });
+  });
+  describe('MapStateToProps', () => { 
+    const state = {
+      getCommentsReducer: {
+        comments: sampleComments,
+        thisComment: sampleComments[0],
+        changedComment: sampleComments[0],
+        changedCommentData:{
+          Comment: sampleComments[0],
+        }
+      },
+      loginUser:{
+        loggedIn: true,
+      }
+    };
+    it('returns the comments state', () => {
+      expect(mapStateToProps(state)).toEqual(commentsProps)
+    });
+  });
+
