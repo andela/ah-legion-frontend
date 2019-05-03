@@ -28,6 +28,7 @@ function alertModalReducer(state = initialState, action) {
         ...state,
         message: 'The article has been reported succesfully.',
         colorClass: 'alert-success',
+        isDeleteComment: false,
         showAlert: true,
       });
     default:

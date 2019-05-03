@@ -1,12 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { oneArticle, sampleComments } from '../testData';
-import { GetAnArticle, mapStateToProps } from '../../containers/GetAnArticle';
+import { GetAnArticle, mapDispatchToProps } from '../../containers/GetAnArticle';
 
 
 describe('GetAnArticle tests', () => {
   it("Should mount GetAnArticle", () => {
     const props = {
+        isLoggedIn: true,
         match: {
             params: {
                 slug: "ukweli"
@@ -52,5 +53,16 @@ describe('GetAnArticle tests', () => {
       const component = shallow(<GetAnArticle {...props}/>);
       expect(component.find('.comments-loading').text()).toEqual('Loading...');
    })
+});
+describe('MapDispatchToProps', () => { 
+  const dispatch = jest.fn()
+  it('should dispatch fetchTheArticle', () => {
+    mapDispatchToProps(dispatch).fetchTheArticle();
+    expect(dispatch).toHaveBeenCalled();
+  });
+  it('should dispatch fetchTheArticleComments', () => {
+    mapDispatchToProps(dispatch).fetchTheArticleComments();
+    expect(dispatch).toHaveBeenCalled();
+  });
 });
 
