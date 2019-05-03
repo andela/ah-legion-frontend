@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { ToastContainer } from 'react-toastify';
 import AnArticle from '../components/AnArticle';
 import Comments from '../components/Comments';
 import { fetchAnArticle, fetchArticleComments } from '../store/actions/commentsActions';
@@ -14,7 +15,16 @@ export class GetAnArticle extends Component {
   }
 
   render() {
-    const { isFetchingArticle, isFetchingComments, errors } = this.props;
+    const {
+      isFetchingArticle,
+      isFetchingComments,
+      errors, isLoggedIn,
+    } = this.props;
+    let username = false;
+
+    if (isLoggedIn && username === false) {
+      username = localStorage.getItem('username');
+    }
     if (isFetchingArticle) {
       return (<div className="article-loading">Loading...</div>);
     }
@@ -29,6 +39,7 @@ export class GetAnArticle extends Component {
     return (
       <div className="container an-article">
         <div className="auth">
+          <ToastContainer />
           <AnArticle data={article} />
           <br />
           <hr />
@@ -43,6 +54,7 @@ export class GetAnArticle extends Component {
 GetAnArticle.propTypes = {
   isFetchingArticle: PropTypes.bool.isRequired,
   isFetchingComments: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.func.isRequired,
   article: PropTypes.shape({}),
   match: PropTypes.shape({}).isRequired,
   errors: PropTypes.string,
@@ -62,13 +74,14 @@ GetAnArticle.defaultProps = {
 export const mapStateToProps = state => ({
   article: state.getCommentsReducer,
   comments: state.getCommentsReducer,
+  isLoggedIn: state.loginUser.loggedIn,
   errors: state.getCommentsReducer.errors,
   author: state.getCommentsReducer.author,
   isFetchingArticle: state.getCommentsReducer.isFetchingArticle,
   isFetchingComments: state.getCommentsReducer.isFetchingComments,
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   fetchTheArticle: (slug) => {
     dispatch(fetchAnArticle(slug));
   },
