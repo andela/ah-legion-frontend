@@ -67,3 +67,11 @@ describe('ALert modal map props to state', () => {
     )
   })
 });
+
+describe('MapDispatchToProps', () => { 
+  const dispatch = jest.fn()
+  it('should dispatch deleteComment', () => {
+    mapDispatchToProps(dispatch).deleteComment("werw",{});
+    expect(dispatch).toHaveBeenCalled();
+  });
+});

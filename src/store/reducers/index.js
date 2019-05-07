@@ -10,6 +10,7 @@ import passwordResetReducer from './passwordResetReducer';
 import commentReducers from './commentReducers';
 import reportArticleReducer from './reportArticleReducer';
 import likeArticleReducers from './likeArticleReducers';
+import searchReducer from './searchReducer';
 
 const rootReducer = combineReducers({
   modalState: modalReducer,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   publishedArticle: articlesReducer,
   getCommentsReducer: commentReducers,
   likeArticleState: likeArticleReducers,
+  searchState: searchReducer,
 });
 
 export default rootReducer;

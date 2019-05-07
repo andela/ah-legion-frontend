@@ -50,4 +50,21 @@ describe(' alert modal reducer', () => {
       }
     )
   })
+  it('should change state on action type report article', () => {
+    expect(
+      alertModalReducer({}, {
+        type: types.REPORTED_ARTICLE,
+        payload: {
+          colorClass: 'alert-success',
+        }
+      })
+    ).toEqual(
+      {
+        colorClass: 'alert-success',
+        message: 'The article has been reported succesfully.',
+        isDeleteComment: false,
+        showAlert: true
+      }
+    )
+  })
 });

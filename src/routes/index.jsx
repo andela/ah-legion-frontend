@@ -20,6 +20,7 @@ import ResetPassword from '../components/ResetPassword';
 import CreateArticleView from '../containers/CreateArticleView';
 import DraftsView from '../containers/DraftsView';
 import GetAnArticle from '../containers/GetAnArticle';
+import SearchArticles from '../containers/SearchArticle';
 import '../css/App.css';
 
 library.add(faStar);
@@ -40,6 +41,7 @@ const Routes = () => (
         <ProtectedRoute path="/article/create" component={CreateArticleView} />
         <ProtectedRoute path="/articles/drafts" component={DraftsView} />
         <Route path="/article/:slug" component={GetAnArticle} />
+        <Route path="/search/:slug" component={SearchArticles} />
       </Switch>
       <Footer />
     </div>

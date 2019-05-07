@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import store from '../store/store';
 import AnArticle from '../components/AnArticle';
 import Comments from '../components/Comments';
-import { LOGIN } from '../store/actions/actionTypes';
+import { LOGIN, REMOVE_REACTION } from '../store/actions/actionTypes';
 import { fetchAnArticle, fetchArticleComments } from '../store/actions/commentsActions';
 import {
   fetchAllLikes,
@@ -19,6 +19,7 @@ export class GetAnArticle extends Component {
   componentDidMount() {
     const { fetchTheArticle, fetchTheArticleComments, match } = this.props;
     const { slug } = match.params;
+    store.dispatch({ type: REMOVE_REACTION });
     fetchTheArticle(slug);
     fetchTheArticleComments(slug);
   }
