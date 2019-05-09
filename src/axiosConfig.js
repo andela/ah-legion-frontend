@@ -13,7 +13,11 @@ export const axiosConfigAuth = axios.create({
   baseURL: REACT_APP_BASE_URL,
   headers: {
     'content-type': 'application/json',
-    authorization: `Bearer ${localStorage.token}`,
+    authorization: {
+      toString() {
+        return `Bearer ${localStorage.getItem('token')}`;
+      },
+    },
   },
 });
 

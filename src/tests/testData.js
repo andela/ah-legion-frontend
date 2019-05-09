@@ -592,3 +592,38 @@ export const commentsProps ={
       "updated_at": "2019-04-17T22:00:51.643036+03:00"
   }
 }
+
+export const viewAnArticleStateToProps = {
+    "article": {
+        "article": {},
+        "author": "",
+        "changedCommentData": {
+            "Comment": {}
+        },
+        "comments": [],
+        "errors": "",
+        "isFetchingArticle": [],
+        "isFetchingComments": []
+    },
+    "author": "",
+    "comments": {
+        "article": {},
+        "author": "",
+        "changedCommentData": {
+            "Comment": {}
+        },
+        "comments": [],
+        "errors": "",
+        "isFetchingArticle": [],
+        "isFetchingComments": []
+    },
+    "errors": "",
+    "hasLiked": false,
+    "isFetchingArticle": [],
+    "isFetchingComments": [],
+    "isLoggedIn": true,
+    "likeID": -1,
+    "likeState": false,
+    "totalDislikes": 0,
+    "totalLikes": 0
+}
