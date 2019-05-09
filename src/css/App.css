@@ -301,6 +301,35 @@ color: #000000;
 	margin-bottom: 11%;
   text-align: justify;
 }
+
+.main-container{
+  position: relative;
+  text-align: center;
+  width: 83%;
+  margin-left: 4%;
+}
+.the-sidebar{
+  position: absolute;
+  top: 35%;
+}
+.like-link{
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  size: 5em;
+  color: #792525;
+  margin-bottom: 20%;
+}
+
+.like-link:hover{
+  text-decoration: none;
+}
+.fa-thumbs-up, .fa-thumbs-down{
+  color: #792525;
+}
+.like-link:hover{
+  color: #FCC810;
+}
 .auth-left{
 	min-height:500px;
 	background: #EFEBD5;
