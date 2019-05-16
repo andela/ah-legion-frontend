@@ -627,3 +627,22 @@ export const viewAnArticleStateToProps = {
     "totalDislikes": 0,
     "totalLikes": 0
 }
+
+export const searchMapStateToProps ={
+    authorCount: 0,
+    authorHasNext: false,
+    authorSearchResults: [],
+    bodyCount: 0,
+    bodyHasNext: false,
+    bodySearchResults: [],
+    descriptionCount: 0,
+    descriptionHasNext: false,
+    descriptionSearchResults: [],
+    tagsCount: 0,
+    tagsHasNext: false,
+    tagsSearchResults: [],
+    titleCount: 0,
+    titleHasNext: false,
+    titleSearchResults: []
+}
+
